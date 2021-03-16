@@ -1,0 +1,946 @@
+[
+  {
+    "status": "success",
+    "data": {
+      "status": {
+        "clientStatus": {
+          "status": "Looking",
+          "meta": { "lastModifiedTimeMs": 1604606919649 },
+          "statusDescription": "Looking",
+          "lastRequestJobUUID": ""
+        },
+        "eyeball": {
+          "dynamicFares": {},
+          "nearbyVehicles": {
+            "2090": {
+              "etaString": "10 minutes",
+              "etaStringShort": "10 mins",
+              "minEta": 10,
+              "vehiclePaths": {
+                "0558dea5dea15e766ba1c4f41abffc58562066e7812d1e3dfad3f56d5bc11678": [
+                  {
+                    "latitude": 6.45239,
+                    "longitude": 3.38931,
+                    "course": 71,
+                    "epoch": 1604606878973
+                  },
+                  {
+                    "latitude": 6.45253,
+                    "longitude": 3.38971,
+                    "course": 77,
+                    "epoch": 1604606892326
+                  },
+                  {
+                    "latitude": 6.45259,
+                    "longitude": 3.38998,
+                    "course": 86,
+                    "epoch": 1604606901037
+                  },
+                  {
+                    "latitude": 6.45261,
+                    "longitude": 3.39026,
+                    "course": -28,
+                    "epoch": 1604606909876
+                  }
+                ],
+                "1614891df34b95f29cad79f2386f2688011c92860eb8bb71ec9c9ba526055664": [
+                  {
+                    "latitude": 6.45304,
+                    "longitude": 3.3842,
+                    "course": -56,
+                    "epoch": 1604606911724
+                  },
+                  {
+                    "latitude": 6.45327,
+                    "longitude": 3.38386,
+                    "course": -63,
+                    "epoch": 1604606919669
+                  }
+                ],
+                "1f7c319db4240c737f25f1e8fef3035205caae83b19082647c28db58d6f9c782": [
+                  {
+                    "latitude": 6.45213,
+                    "longitude": 3.39417,
+                    "course": -147,
+                    "epoch": 1604606864968
+                  },
+                  {
+                    "latitude": 6.45196,
+                    "longitude": 3.39406,
+                    "course": -128,
+                    "epoch": 1604606872573
+                  },
+                  {
+                    "latitude": 6.45189,
+                    "longitude": 3.39397,
+                    "course": -124,
+                    "epoch": 1604606876846
+                  },
+                  {
+                    "latitude": 6.45162,
+                    "longitude": 3.39356,
+                    "course": -125,
+                    "epoch": 1604606895236
+                  },
+                  {
+                    "latitude": 6.45148,
+                    "longitude": 3.39336,
+                    "course": -29,
+                    "epoch": 1604606904382
+                  },
+                  {
+                    "latitude": 6.45189,
+                    "longitude": 3.39313,
+                    "course": -115,
+                    "epoch": 1604606922044
+                  }
+                ],
+                "372ddea3fe7dc5d436794fcfef18b1fc1b7c4771748690896c7b9b8881aaf1f9": [
+                  {
+                    "latitude": 6.45526,
+                    "longitude": 3.38968,
+                    "course": -37,
+                    "epoch": 1604606863290
+                  },
+                  {
+                    "latitude": 6.4553,
+                    "longitude": 3.38965,
+                    "course": 0,
+                    "epoch": 1604606865367
+                  },
+                  {
+                    "latitude": 6.45537,
+                    "longitude": 3.38965,
+                    "course": -12,
+                    "epoch": 1604606868281
+                  },
+                  {
+                    "latitude": 6.45555,
+                    "longitude": 3.38961,
+                    "course": -29,
+                    "epoch": 1604606875953
+                  },
+                  {
+                    "latitude": 6.45573,
+                    "longitude": 3.38951,
+                    "course": -28,
+                    "epoch": 1604606884511
+                  },
+                  {
+                    "latitude": 6.45615,
+                    "longitude": 3.38929,
+                    "course": -19,
+                    "epoch": 1604606904219
+                  },
+                  {
+                    "latitude": 6.45638,
+                    "longitude": 3.38921,
+                    "course": -28,
+                    "epoch": 1604606914349
+                  },
+                  {
+                    "latitude": 6.45651,
+                    "longitude": 3.38914,
+                    "course": 37,
+                    "epoch": 1604606920485
+                  },
+                  {
+                    "latitude": 6.45655,
+                    "longitude": 3.38917,
+                    "course": 24,
+                    "epoch": 1604606922562
+                  }
+                ],
+                "411fee2c81a701cd67775710ade837275af11b9e67d4b894339dcb34c691e79c": [
+                  {
+                    "latitude": 6.45304,
+                    "longitude": 3.3842,
+                    "course": -56,
+                    "epoch": 1604606911724
+                  },
+                  {
+                    "latitude": 6.45327,
+                    "longitude": 3.38386,
+                    "course": -63,
+                    "epoch": 1604606919669
+                  }
+                ],
+                "dda933b03aaf48a939bd1742f44e42e39876937e42b17b46819c2634f0f19575": [
+                  {
+                    "latitude": 6.45304,
+                    "longitude": 3.3842,
+                    "course": -56,
+                    "epoch": 1604606911724
+                  },
+                  {
+                    "latitude": 6.45327,
+                    "longitude": 3.38386,
+                    "course": -63,
+                    "epoch": 1604606919669
+                  }
+                ]
+              },
+              "averageEta": 594
+            }
+          },
+          "meta": { "lastModifiedTimeMs": 1604606919649 },
+          "reverseGeocode": {
+            "uuid": "fae4bc9b-b0ea-426c-864b-137df5a02d73",
+            "latitude": 6.448529999999999,
+            "longitude": 3.391229999999999,
+            "shortAddress": "CMS",
+            "longAddress": "Lagos Island, Lagos, Nigeria",
+            "components": [
+              {
+                "long_name": "CMS",
+                "short_name": "CMS",
+                "types": [
+                  "establishment",
+                  "point_of_interest",
+                  "transit_station"
+                ]
+              },
+              {
+                "long_name": "Lagos Island",
+                "short_name": "Lagos Island",
+                "types": ["political", "sublocality", "sublocality_level_1"]
+              },
+              {
+                "long_name": "Lagos",
+                "short_name": "Lagos",
+                "types": ["locality", "political"]
+              },
+              {
+                "long_name": "Lagos Island",
+                "short_name": "Lagos Island",
+                "types": ["administrative_area_level_2", "political"]
+              },
+              {
+                "long_name": "Lagos",
+                "short_name": "LA",
+                "types": ["administrative_area_level_1", "political"]
+              },
+              {
+                "long_name": "Nigeria",
+                "short_name": "NG",
+                "types": ["country", "political"]
+              }
+            ]
+          }
+        },
+        "city": {
+          "cityId": "389",
+          "cityName": "lagos",
+          "meta": { "lastModifiedTimeMs": 1604606919648 },
+          "countryIso2": "NG",
+          "currencyCode": "NGN",
+          "defaultVehicleViewId": 2090,
+          "fareSplitFeeString": "Each rider will be charged a ₦41 fare split fee.",
+          "vehicleViews": {
+            "2090": {
+              "id": 2090,
+              "uuid": "21141cb0-76f7-4638-b26a-3122f27ce90a",
+              "mapImages": [
+                {
+                  "height": 70,
+                  "width": 70,
+                  "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/map70px/map-uberx.png",
+                  "format": "Image"
+                }
+              ],
+              "monoImages": [
+                {
+                  "height": 37,
+                  "width": 100,
+                  "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/mono/mono-uberx.png",
+                  "format": "Image"
+                }
+              ],
+              "description": "UberX",
+              "capacity": 4,
+              "maxFareSplits": 4,
+              "requestPickupButtonString": "REQUEST uberX",
+              "setPickupLocationString": "SET PICKUP LOCATION",
+              "pickupEtaString": "PICKUP TIME IS APPROXIMATELY {string}",
+              "fare": {
+                "id": 0,
+                "baseValue": 220,
+                "distanceUnit": "km",
+                "perMinute": "NGN11",
+                "speedThresholdMps": 0,
+                "minimum": "NGN500",
+                "cancellation": "NGN0",
+                "type": "TimeAndDistance",
+                "base": "NGN220",
+                "perDistanceUnit": "NGN65",
+                "perDistanceUnitValue": 65,
+                "perMinuteValue": 11,
+                "minimumValue": 500,
+                "cancellationValue": 0,
+                "safeRidesFee": "NGN0",
+                "safeRidesFeeValue": 0,
+                "perWaitMinute": "NGN11",
+                "perWaitMinuteValue": 11
+              },
+              "allowFareEstimate": true,
+              "noneAvailableString": "NO CARS AVAILABLE",
+              "allowCredits": true,
+              "permittedPaymentMethods": null,
+              "allowedToSurge": true,
+              "displayName": "uberX",
+              "fullDescription": "Everyday low-cost cars.",
+              "isCashOnly": false,
+              "isInspecting": false,
+              "groupId": 0,
+              "productGroupUuid": "ccced22e-a5a4-47d9-9d25-d6b957cc7c7c",
+              "destinationEntry": "optional",
+              "allowRidepool": false,
+              "shouldFetchUpfrontFare": false,
+              "originalTagline": "THE LOW-COST UBER",
+              "upfrontPriceEnabled": false,
+              "routelineDisplay": null,
+              "parentProductTypeUUID": "6a8e56b8-914e-4b48-a387-e6ad21d9c00c",
+              "predictedEta": 6,
+              "isSchedulable": true,
+              "productTier": {
+                "displayName": "Popular",
+                "typeName": "POPULAR"
+              },
+              "detailedDescription": "Affordable, everyday rides",
+              "productImage": {
+                "height": 360,
+                "width": 360,
+                "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/haloProductImages/v1.1/Black_v1.png",
+                "format": "Image"
+              },
+              "productImageBackground": {
+                "height": 200,
+                "width": 200,
+                "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/haloProductImageBackgrounds/v1.1/imageBackground_3x_v1.png",
+                "format": "Image"
+              },
+              "emphasisType": "DEFAULT",
+              "mapIcons": {
+                "standard": {
+                  "height": 112,
+                  "width": 112,
+                  "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/mapIconsStandard/car_bag_black_2d.png",
+                  "format": "Image"
+                },
+                "spritesheet": {
+                  "height": 23,
+                  "width": 1440,
+                  "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/haloMapIconsSpritesheet/v1/uberBlack_Spritesheet_v1.png",
+                  "format": "Image"
+                },
+                "numberOfSprites": 64,
+                "tintable": true
+              },
+              "uberexUpfrontPriceEnabled": false,
+              "displayCard": {},
+              "schedulable": {
+                "enabled": true,
+                "bannerTitle": "Please Note",
+                "bannerMessage": "Fares may vary due to traffic, weather & other factors. Uber doesn't guarantee a driver will accept your ride request.",
+                "bannerMessageHtml": "Fares may vary due to traffic, weather & other factors. Uber doesn't guarantee a driver will accept your ride request."
+              },
+              "driverCancelTimeThresholdMinutes": 5,
+              "riderCancelTimeThresholdMinutes": 5,
+              "displayOptions": {},
+              "poolOptions": {
+                "poolVehicleViewType": "unknown",
+                "configurations": null
+              },
+              "multiDestinationOptions": { "allowMultiDestination": true },
+              "tripTime": {
+                "chargeForWaitTimeEnabled": true,
+                "waitTimeThresholdSec": 300
+              },
+              "beaconConfig": { "restrictedColors": [] },
+              "hideFareBreakdown": false,
+              "requiresProductConfiguration": false,
+              "hourlyHireInfo": { "isHourlyHire": false },
+              "boltOns": null,
+              "safetyTipsListEnabled": true
+            }
+          },
+          "vehicleViewsOrder": [2090],
+          "productGroups": [
+            {
+              "uuid": "ccced22e-a5a4-47d9-9d25-d6b957cc7c7c",
+              "groupType": "ride",
+              "name": "ride",
+              "iconUrl": "https://uber-test.s3.amazonaws.com/icon_ride.png",
+              "description": "ride"
+            }
+          ],
+          "productTiersOrder": [
+            "SPECIAL",
+            "RECOMMENDED",
+            "POPULAR",
+            "ECONOMY",
+            "PREMIUM",
+            "EXTRA_SEATS",
+            "MORE"
+          ],
+          "timezone": "Africa/Lagos",
+          "isEmergencyLocationSharingAvailable": false,
+          "productsDisplayOptions": {
+            "vehicleViewsOrder": [2090],
+            "vehicleViewsShortOrder": null,
+            "defaultVehicleViewId": 2090,
+            "productFilters": null,
+            "productCategories": [
+              { "title": "Popular", "vehicleViewIds": [2090] }
+            ],
+            "productContexts": [],
+            "responseId": "fbaff7af-8e6e-43b6-b076-6675ae1ab775",
+            "responseHash": "858592a481937bbd8e636b1371800de8c707a0862e07b2386b3685ef51143982",
+            "miniListSize": 1,
+            "postConfirmationProductUpsellInfos": null
+          },
+          "productsUnavailableMessage": "Unfortunately, Uber is currently unavailable in your area."
+        },
+        "metadata": {
+          "targetLocationSynced": {
+            "latitude": 6.448529999999999,
+            "longitude": 3.391229999999999
+          },
+          "pollingIntervalMs": 4000
+        }
+      }
+    }
+  },
+  {
+    "status": "success",
+    "data": {
+      "status": {
+        "clientStatus": {
+          "status": "Looking",
+          "meta": { "lastModifiedTimeMs": 1604609225922 },
+          "statusDescription": "Looking",
+          "lastRequestJobUUID": ""
+        },
+        "eyeball": {
+          "dynamicFares": {},
+          "nearbyVehicles": {
+            "2090": {
+              "etaString": "9 minutes",
+              "etaStringShort": "9 mins",
+              "minEta": 9,
+              "vehiclePaths": {
+                "194eec3e89f4006e3f4b9ad2f57f9b6bd99f5491cbd1d8e5c98f757f59767ad0": [
+                  {
+                    "latitude": 6.45264,
+                    "longitude": 3.39245,
+                    "course": 79,
+                    "epoch": 1604609195000
+                  },
+                  {
+                    "latitude": 6.4527,
+                    "longitude": 3.39276,
+                    "course": -17,
+                    "epoch": 1604609202095
+                  },
+                  {
+                    "latitude": 6.4529,
+                    "longitude": 3.3927,
+                    "course": -73,
+                    "epoch": 1604609206814
+                  },
+                  {
+                    "latitude": 6.45296,
+                    "longitude": 3.3925,
+                    "course": 4,
+                    "epoch": 1604609211507
+                  },
+                  {
+                    "latitude": 6.45311,
+                    "longitude": 3.39251,
+                    "course": 25,
+                    "epoch": 1604609214906
+                  },
+                  {
+                    "latitude": 6.45357,
+                    "longitude": 3.39273,
+                    "course": 32,
+                    "epoch": 1604609226421
+                  },
+                  {
+                    "latitude": 6.45387,
+                    "longitude": 3.39292,
+                    "course": -51,
+                    "epoch": 1604609234435
+                  }
+                ],
+                "3e132b568d5861ab6b9d05a0fe0f4e09dabe1ea0ef53d191c889eedf3844fd71": [
+                  {
+                    "latitude": 6.45172,
+                    "longitude": 3.38949,
+                    "course": -15,
+                    "epoch": 1604609195000
+                  },
+                  {
+                    "latitude": 6.45239,
+                    "longitude": 3.38931,
+                    "course": 71,
+                    "epoch": 1604609216334
+                  },
+                  {
+                    "latitude": 6.45253,
+                    "longitude": 3.38971,
+                    "course": 77,
+                    "epoch": 1604609229298
+                  }
+                ],
+                "a0873c37b2b9077438f08752ddad47fce0a24a92ea2aea87bc12e2b8cde90753": [
+                  {
+                    "latitude": 6.45264,
+                    "longitude": 3.39245,
+                    "course": 79,
+                    "epoch": 1604609195000
+                  },
+                  {
+                    "latitude": 6.4527,
+                    "longitude": 3.39276,
+                    "course": -17,
+                    "epoch": 1604609202095
+                  },
+                  {
+                    "latitude": 6.4529,
+                    "longitude": 3.3927,
+                    "course": -73,
+                    "epoch": 1604609206814
+                  },
+                  {
+                    "latitude": 6.45296,
+                    "longitude": 3.3925,
+                    "course": 4,
+                    "epoch": 1604609211507
+                  },
+                  {
+                    "latitude": 6.45311,
+                    "longitude": 3.39251,
+                    "course": 25,
+                    "epoch": 1604609214906
+                  },
+                  {
+                    "latitude": 6.45357,
+                    "longitude": 3.39273,
+                    "course": 32,
+                    "epoch": 1604609226421
+                  },
+                  {
+                    "latitude": 6.45387,
+                    "longitude": 3.39292,
+                    "course": -51,
+                    "epoch": 1604609234435
+                  }
+                ],
+                "ba21ef8167fd4b8a32f625b806f3d7c85fe796175752f3abc632f60a8c17ec75": [
+                  {
+                    "latitude": 6.45521,
+                    "longitude": 3.38858,
+                    "course": -22,
+                    "epoch": 1604609195000
+                  },
+                  {
+                    "latitude": 6.45611,
+                    "longitude": 3.38822,
+                    "course": -25,
+                    "epoch": 1604609210711
+                  },
+                  {
+                    "latitude": 6.45657,
+                    "longitude": 3.388,
+                    "course": -20,
+                    "epoch": 1604609218973
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609224152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609225152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609226152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609227152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609228152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609229152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609230152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609231152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609232152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609233152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609234152
+                  },
+                  {
+                    "latitude": 6.45687,
+                    "longitude": 3.38789,
+                    "course": -20,
+                    "epoch": 1604609235152
+                  }
+                ],
+                "ba7e8a38e6cbebeb5539c63bcaee21da14975e633cdaa81f170f2d90674c185c": [
+                  {
+                    "latitude": 6.44771,
+                    "longitude": 3.3926,
+                    "course": 122,
+                    "epoch": 1604609195000
+                  },
+                  {
+                    "latitude": 6.44758,
+                    "longitude": 3.39281,
+                    "course": 115,
+                    "epoch": 1604609197043
+                  },
+                  {
+                    "latitude": 6.44746,
+                    "longitude": 3.39307,
+                    "course": 100,
+                    "epoch": 1604609199412
+                  },
+                  {
+                    "latitude": 6.44741,
+                    "longitude": 3.39336,
+                    "course": 125,
+                    "epoch": 1604609201843
+                  },
+                  {
+                    "latitude": 6.44625,
+                    "longitude": 3.39503,
+                    "course": 124,
+                    "epoch": 1604609218676
+                  }
+                ],
+                "be3e8b432d6a7d8e4bb3a0a6f220ed81e531cb36b900e46baa56ed3839324c38": [
+                  {
+                    "latitude": 6.44844,
+                    "longitude": 3.39141,
+                    "course": 121,
+                    "epoch": 1604609195000
+                  },
+                  {
+                    "latitude": 6.4483,
+                    "longitude": 3.39164,
+                    "course": 118,
+                    "epoch": 1604609197195
+                  },
+                  {
+                    "latitude": 6.44805,
+                    "longitude": 3.39211,
+                    "course": 125,
+                    "epoch": 1604609201534
+                  },
+                  {
+                    "latitude": 6.44771,
+                    "longitude": 3.39259,
+                    "course": 121,
+                    "epoch": 1604609206332
+                  },
+                  {
+                    "latitude": 6.44758,
+                    "longitude": 3.39281,
+                    "course": 115,
+                    "epoch": 1604609208416
+                  },
+                  {
+                    "latitude": 6.44746,
+                    "longitude": 3.39307,
+                    "course": 100,
+                    "epoch": 1604609210749
+                  },
+                  {
+                    "latitude": 6.44741,
+                    "longitude": 3.39336,
+                    "course": 125,
+                    "epoch": 1604609213145
+                  },
+                  {
+                    "latitude": 6.44625,
+                    "longitude": 3.39503,
+                    "course": 124,
+                    "epoch": 1604609229730
+                  }
+                ]
+              },
+              "averageEta": 503
+            }
+          },
+          "meta": { "lastModifiedTimeMs": 1604609225922 },
+          "reverseGeocode": {
+            "uuid": "fae4bc9b-b0ea-426c-864b-137df5a02d73",
+            "latitude": 6.448529999999999,
+            "longitude": 3.391229999999999,
+            "shortAddress": "CMS",
+            "longAddress": "Lagos Island, Lagos, Nigeria",
+            "components": [
+              {
+                "long_name": "CMS",
+                "short_name": "CMS",
+                "types": [
+                  "establishment",
+                  "point_of_interest",
+                  "transit_station"
+                ]
+              },
+              {
+                "long_name": "Lagos Island",
+                "short_name": "Lagos Island",
+                "types": ["political", "sublocality", "sublocality_level_1"]
+              },
+              {
+                "long_name": "Lagos",
+                "short_name": "Lagos",
+                "types": ["locality", "political"]
+              },
+              {
+                "long_name": "Lagos Island",
+                "short_name": "Lagos Island",
+                "types": ["administrative_area_level_2", "political"]
+              },
+              {
+                "long_name": "Lagos",
+                "short_name": "LA",
+                "types": ["administrative_area_level_1", "political"]
+              },
+              {
+                "long_name": "Nigeria",
+                "short_name": "NG",
+                "types": ["country", "political"]
+              }
+            ]
+          }
+        },
+        "city": {
+          "cityId": "389",
+          "cityName": "lagos",
+          "meta": { "lastModifiedTimeMs": 1604609225922 },
+          "countryIso2": "NG",
+          "currencyCode": "NGN",
+          "defaultVehicleViewId": 2090,
+          "fareSplitFeeString": "Each rider will be charged a ₦41 fare split fee.",
+          "vehicleViews": {
+            "2090": {
+              "id": 2090,
+              "uuid": "21141cb0-76f7-4638-b26a-3122f27ce90a",
+              "mapImages": [
+                {
+                  "height": 70,
+                  "width": 70,
+                  "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/map70px/map-uberx.png",
+                  "format": "Image"
+                }
+              ],
+              "monoImages": [
+                {
+                  "height": 37,
+                  "width": 100,
+                  "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/mono/mono-uberx.png",
+                  "format": "Image"
+                }
+              ],
+              "description": "UberX",
+              "capacity": 4,
+              "maxFareSplits": 4,
+              "requestPickupButtonString": "REQUEST uberX",
+              "setPickupLocationString": "SET PICKUP LOCATION",
+              "pickupEtaString": "PICKUP TIME IS APPROXIMATELY {string}",
+              "fare": {
+                "id": 0,
+                "baseValue": 220,
+                "distanceUnit": "km",
+                "perMinute": "NGN11",
+                "speedThresholdMps": 0,
+                "minimum": "NGN500",
+                "cancellation": "NGN0",
+                "type": "TimeAndDistance",
+                "base": "NGN220",
+                "perDistanceUnit": "NGN65",
+                "perDistanceUnitValue": 65,
+                "perMinuteValue": 11,
+                "minimumValue": 500,
+                "cancellationValue": 0,
+                "safeRidesFee": "NGN0",
+                "safeRidesFeeValue": 0,
+                "perWaitMinute": "NGN11",
+                "perWaitMinuteValue": 11
+              },
+              "allowFareEstimate": true,
+              "noneAvailableString": "NO CARS AVAILABLE",
+              "allowCredits": true,
+              "permittedPaymentMethods": null,
+              "allowedToSurge": true,
+              "displayName": "uberX",
+              "fullDescription": "Everyday low-cost cars.",
+              "isCashOnly": false,
+              "isInspecting": false,
+              "groupId": 0,
+              "productGroupUuid": "ccced22e-a5a4-47d9-9d25-d6b957cc7c7c",
+              "destinationEntry": "optional",
+              "allowRidepool": false,
+              "shouldFetchUpfrontFare": false,
+              "originalTagline": "THE LOW-COST UBER",
+              "upfrontPriceEnabled": false,
+              "routelineDisplay": null,
+              "parentProductTypeUUID": "6a8e56b8-914e-4b48-a387-e6ad21d9c00c",
+              "predictedEta": 6,
+              "isSchedulable": true,
+              "productTier": {
+                "displayName": "Popular",
+                "typeName": "POPULAR"
+              },
+              "detailedDescription": "Affordable, everyday rides",
+              "productImage": {
+                "height": 360,
+                "width": 360,
+                "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/haloProductImages/v1.1/Black_v1.png",
+                "format": "Image"
+              },
+              "productImageBackground": {
+                "height": 200,
+                "width": 200,
+                "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/haloProductImageBackgrounds/v1.1/imageBackground_3x_v1.png",
+                "format": "Image"
+              },
+              "emphasisType": "DEFAULT",
+              "mapIcons": {
+                "standard": {
+                  "height": 112,
+                  "width": 112,
+                  "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/mapIconsStandard/car_bag_black_2d.png",
+                  "format": "Image"
+                },
+                "spritesheet": {
+                  "height": 23,
+                  "width": 1440,
+                  "url": "https://d1a3f4spazzrp4.cloudfront.net/car-types/haloMapIconsSpritesheet/v1/uberBlack_Spritesheet_v1.png",
+                  "format": "Image"
+                },
+                "numberOfSprites": 64,
+                "tintable": true
+              },
+              "uberexUpfrontPriceEnabled": false,
+              "displayCard": {},
+              "schedulable": {
+                "enabled": true,
+                "bannerTitle": "Please Note",
+                "bannerMessage": "Fares may vary due to traffic, weather & other factors. Uber doesn't guarantee a driver will accept your ride request.",
+                "bannerMessageHtml": "Fares may vary due to traffic, weather & other factors. Uber doesn't guarantee a driver will accept your ride request."
+              },
+              "driverCancelTimeThresholdMinutes": 5,
+              "riderCancelTimeThresholdMinutes": 5,
+              "displayOptions": {},
+              "poolOptions": {
+                "poolVehicleViewType": "unknown",
+                "configurations": null
+              },
+              "multiDestinationOptions": { "allowMultiDestination": true },
+              "tripTime": {
+                "chargeForWaitTimeEnabled": true,
+                "waitTimeThresholdSec": 300
+              },
+              "beaconConfig": { "restrictedColors": [] },
+              "hideFareBreakdown": false,
+              "requiresProductConfiguration": false,
+              "hourlyHireInfo": { "isHourlyHire": false },
+              "boltOns": null,
+              "safetyTipsListEnabled": true
+            }
+          },
+          "vehicleViewsOrder": [2090],
+          "productGroups": [
+            {
+              "uuid": "ccced22e-a5a4-47d9-9d25-d6b957cc7c7c",
+              "groupType": "ride",
+              "name": "ride",
+              "iconUrl": "https://uber-test.s3.amazonaws.com/icon_ride.png",
+              "description": "ride"
+            }
+          ],
+          "productTiersOrder": [
+            "SPECIAL",
+            "RECOMMENDED",
+            "POPULAR",
+            "ECONOMY",
+            "PREMIUM",
+            "EXTRA_SEATS",
+            "MORE"
+          ],
+          "timezone": "Africa/Lagos",
+          "isEmergencyLocationSharingAvailable": false,
+          "productsDisplayOptions": {
+            "vehicleViewsOrder": [2090],
+            "vehicleViewsShortOrder": null,
+            "defaultVehicleViewId": 2090,
+            "productFilters": null,
+            "productCategories": [
+              { "title": "Popular", "vehicleViewIds": [2090] }
+            ],
+            "productContexts": [],
+            "responseId": "bc2b1343-5dd1-47fb-9254-68a45e2e00a5",
+            "responseHash": "858592a481937bbd8e636b1371800de8c707a0862e07b2386b3685ef51143982",
+            "miniListSize": 1,
+            "postConfirmationProductUpsellInfos": null
+          },
+          "productsUnavailableMessage": "Unfortunately, Uber is currently unavailable in your area."
+        },
+        "metadata": {
+          "targetLocationSynced": {
+            "latitude": 6.448529999999999,
+            "longitude": 3.391229999999999
+          },
+          "pollingIntervalMs": 4000
+        }
+      }
+    }
+  }
+]
