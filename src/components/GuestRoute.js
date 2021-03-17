@@ -7,9 +7,9 @@ function GuestRoute({ component: Component, ...rest }) {
 		<Route
 			{...rest}
 			render={(props) => (
-				<Layout>
+				<>
 					<Component {...props} />
-				</Layout>
+				</>
 			)}
 		/>
 	)

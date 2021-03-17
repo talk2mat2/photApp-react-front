@@ -66,7 +66,16 @@ function AppMenu() {
 					backgroundColor: '#444444',
 				}}
 			>
-				<img
+				<Link to='/'>
+					{' '}
+					<img
+						src='/media/ogaphotos_favicon.png'
+						width={100}
+						height={100}
+						alt='img'
+					/>
+				</Link>
+				{/* <img
 					style={{
 						marginTop: '20px',
 						marginBottom: '20px',
@@ -75,9 +84,9 @@ function AppMenu() {
 					}}
 					src={logo}
 					alt='Logo'
-				/>
+				/> */}
 			</div>
-			<Divider />
+			{/* <Divider /> */}
 			<MenuList>
 				<MenuItem
 					className={

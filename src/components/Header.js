@@ -41,20 +41,20 @@ const Header = () => {
         </div>
 
         <div className="collapse navbar-collapse">
-          <a className="nav-link scroll" href="#home">
+          <Link className="nav-link scroll" to="/">
             <img
               src="media/ogaphotos_favicon.png"
               width="80"
               height="80"
               alt="img"
             />
-          </a>
+          </Link>
 
           <ul className="nav navbar-nav ml-auto">
             <li className="nav-item">
               <Link
                 className="nav-link scroll"
-                href="/"
+                to="/"
                 style={{ color: "#000" }}
               >
                 Home

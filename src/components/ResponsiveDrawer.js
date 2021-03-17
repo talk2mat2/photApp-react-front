@@ -45,7 +45,7 @@ function ResponsiveDrawer(props) {
 	const { container } = props
 	const classes = useStyles()
 	const theme = useTheme()
-	const [mobileOpen, setMobileOpen] = React.useState(false)
+	const [mobileOpen, setMobileOpen] = React.useState(true)
 
 	function handleDrawerToggle() {
 		setMobileOpen(!mobileOpen)
@@ -58,7 +58,7 @@ function ResponsiveDrawer(props) {
 		<div className={classes.root}>
 			<CssBaseline />
 
-			<AppBar position='fixed' className={classes.appBar}>
+			{/* <AppBar position='fixed' className={classes.appBar}>
 				<header className='main-header header-style-one'>
 					<div className='header-upper'>
 						<div className='auto-container'>
@@ -157,7 +157,7 @@ function ResponsiveDrawer(props) {
 						</nav>
 					</div>
 				</header>
-			</AppBar>
+			</AppBar> */}
 			<nav className={classes.drawer} aria-label='mailbox folders'>
 				{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
 				<Hidden smUp implementation='css'>

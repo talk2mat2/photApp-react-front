@@ -1,20 +1,26 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import Sliders from "../../components/Sliders";
 import { Scripts } from "../../script";
 
 const Homepage = () => {
   useEffect(() => {
-    Scripts.forEach((item) => {
-      const script = document.createElement("script");
-      script.src = item.src;
-      script.async = true;
-      document.body.appendChild(script);
-    });
-  }, []);
+    const loadScript = async () => {
+      await Scripts.forEach((item) => {
+        const script = document.createElement("script");
+        script.src = item.src;
+        script.async = true;
+        document.body.appendChild(script);
+      });
+    };
+    loadScript();
+  });
   return (
     <div>
+      <Header/>
       <section id="home" className="pt-0 mt-0">
         <div className="rev_slider_wrapper fullscreen-container">
           <div
@@ -634,6 +640,7 @@ const Homepage = () => {
         </div>
         {/* /.wrapper */}
       </section>
+      <Footer/>
     </div>
   );
 };

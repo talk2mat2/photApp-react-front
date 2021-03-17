@@ -51,6 +51,7 @@ function BaseRoute() {
         <GuestRoute component={Register} path="/register" />
         {/* <GuestRoute component={Login} path='/login' /> */}
         <GuestRoute component={SignUp} path="/SignUp" />
+        {/* <GuestRoute component={Login} path="/Login" /> */}
         <GuestRoute component={Portfolio} path="/Portfolio" />
 
         <GuestRoute component={ForgotPassword} path="/forgot_password" />

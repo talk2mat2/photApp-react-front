@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect } from "react";
 import { Scripts } from "../../script";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 
 const Portfolio = () => {
   useEffect(() => {
@@ -13,6 +15,7 @@ const Portfolio = () => {
   }, []);
   return (
     <div>
+      <Header/>
       <div
         className="wrapper image-wrapper bg-image inverse-text"
         data-image-src="style/images/art/bg9.jpg"
@@ -320,6 +323,7 @@ const Portfolio = () => {
         </div>
         {/* /.container */}
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -14,7 +14,7 @@ function ProtectedRoute({ component: Component, ...rest }) {
 						<Component {...props} />
 					</ResponsiveDrawer>
 				) : (
-					<Redirect to='login' />
+					<Redirect to='SignUp' />
 				)
 			}
 		/>

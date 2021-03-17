@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect } from "react";
 import { Scripts } from "../../script";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 
 const Contact = () => {
   useEffect(() => {
@@ -12,6 +14,8 @@ const Contact = () => {
     });
   }, []);
   return (
+    <>
+    <Header/>
     <section id="home" className="pt-0 mt-0">
       {/* <div class="rev_slider_wrapper fullscreen-container">
  
@@ -174,6 +178,8 @@ const Contact = () => {
       </div>
       {/* /.wrapper */}
     </section>
+    <Footer/>
+    </>
   );
 };
 

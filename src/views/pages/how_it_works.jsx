@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect } from "react";
 import { Scripts } from "../../script";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 // import "./SignupStyle.css";
 
 const How_it_works = () => {
@@ -14,6 +16,7 @@ const How_it_works = () => {
   }, []);
   return (
     <div>
+      <Header/>
       <div
         className="wrapper image-wrapper bg-image inverse-text"
         data-image-src="style/images/art/bg6.jpg"
@@ -317,6 +320,7 @@ const How_it_works = () => {
           {/* /.container */}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
