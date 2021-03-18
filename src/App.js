@@ -13,7 +13,7 @@ import BaseRoute from "./components/BaseRoute";
 // import { Scripts } from "./script";
 
 function App() {
-  store.dispatch(fetchUser());
+
   return (
 <>
       {/* <AuthLoading> */}
