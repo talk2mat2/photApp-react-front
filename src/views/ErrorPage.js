@@ -36,7 +36,7 @@ const ErrorPage = (props) => {
 			<CssBaseline />
 			<div className={classes.paper}>
 				<Avatar className={classes.avatar}>
-					<img src={logo} alt='Logo' />
+					<img src='/media/ogaphotos_favicon.png' alt='Logo' />
 				</Avatar>
 				<Typography component='h1' variant='h5'>
 					Page Not Found

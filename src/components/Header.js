@@ -3,15 +3,21 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { signOut } from "../actions/authactions";
+import PersonIcon from '@material-ui/icons/Person';
+import {LOGINOUTUSER} from '../redux/action'
+
+
 // import { useDispatch } from 'react-redux';
 // import { signOut } from '../actions/authactions';
 
 const Header = () => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const CurrentUser = useSelector((state) => state.user.currentUser);
+  const userData = CurrentUser && CurrentUser.userData;
 
   const LogOut = () => {
-    dispatch(signOut());
+    dispatch(LOGINOUTUSER());
   };
   return (
     <nav
@@ -110,23 +116,33 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link
+           {!CurrentUser?<Link
                 className="nav-link scroll"
                 to="/SignUp"
                 style={{ color: "#000" }}
               >
                 Login/Sign UP
-              </Link>
+              </Link>:<Link style={{ color: "#000" }} className="nav-link scroll" to="/dashboard">{`${userData.fname||userData.Email}`}</Link>}
             </li>
             <li className="nav-item">
-              <a
+              <Link
                 className="nav-link scroll"
-                href="sign_up.html"
+                to="/signUp"
                 style={{ color: "#000" }}
               >
                 <button className="signup">Hire A Photographer</button>
-              </a>
+              </Link>
             </li>
+            {CurrentUser?<li className="nav-item">
+              <Link onClick={LogOut}
+                className="nav-link scroll"
+                to="/"
+                style={{ color: "#000" }}
+              >
+                logout
+              </Link>
+            </li>
+            :null}
           </ul>
         </div>
       </div>

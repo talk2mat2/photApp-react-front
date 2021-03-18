@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { LOGINOUTUSER } from '../redux/action'
 
 import logo from '../assets/sidemenu_logo.jpg'
 import DashboardIcon from '@material-ui/icons/Dashboard'
@@ -48,7 +49,7 @@ function AppMenu() {
 	const classes = useStyles()
 	const [active, setActive] = useState('')
 	const LogOut = () => {
-		dispatch(signOut())
+		dispatch(LOGINOUTUSER())
 	}
 
 	const handleActive = (page) => {
@@ -87,7 +88,15 @@ function AppMenu() {
 				/> */}
 			</div>
 			{/* <Divider /> */}
+
 			<MenuList>
+				<MenuItem
+					component={Link}
+					to='/looking'
+					onClick={handleActive('looking')}
+				>
+					<button className='signup'>Hire A Photographer</button>
+				</MenuItem>
 				<MenuItem
 					className={
 						(classes.menuItem, active === 'dashboard' && classes.active)
@@ -103,7 +112,7 @@ function AppMenu() {
 						{languageJson.dashboard_text}
 					</Typography>
 				</MenuItem>
-				<MenuItem
+				{/* <MenuItem
 					className={(classes.menuItem, active === 'looking' && classes.active)}
 					component={Link}
 					to='/looking'
@@ -115,7 +124,7 @@ function AppMenu() {
 					<Typography variant='inherit'>
 						{languageJson.request_a_trip}
 					</Typography>
-				</MenuItem>
+				</MenuItem> */}
 				<MenuItem
 					className={(classes.menuItem, active === 'trips' && classes.active)}
 					onClick={handleActive('trips')}
@@ -125,9 +134,9 @@ function AppMenu() {
 					<ListItemIcon>
 						<ReceiptTwoTone />
 					</ListItemIcon>
-					<Typography variant='inherit'>{languageJson.my_trips}</Typography>
+					<Typography variant='inherit'>My Sessions</Typography>
 				</MenuItem>
-				<MenuItem
+				{/* <MenuItem
 					className={
 						(classes.menuItem, active === 'trans_eat' && classes.active)
 					}
@@ -139,7 +148,7 @@ function AppMenu() {
 						<Restaurant />
 					</ListItemIcon>
 					<Typography variant='inherit'>{languageJson.order_food}</Typography>
-				</MenuItem>
+				</MenuItem> */}
 				<MenuItem
 					className={(classes.menuItem, active === 'eats' && classes.active)}
 					onClick={handleActive('eats')}
@@ -149,9 +158,7 @@ function AppMenu() {
 					<ListItemIcon>
 						<Restaurant />
 					</ListItemIcon>
-					<Typography variant='inherit'>
-						{languageJson.order_food_history}
-					</Typography>
+					<Typography variant='inherit'>Phtoto Sessions History</Typography>
 				</MenuItem>
 				<MenuItem
 					className={

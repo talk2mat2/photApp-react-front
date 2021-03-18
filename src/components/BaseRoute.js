@@ -26,6 +26,7 @@ import CourierHistory from "../views/users/CourierHistory";
 import SignUp from "../views/pages/Signup";
 import How_it_works from "../views/pages/how_it_works";
 import Portfolio from "../views/pages/portfolio";
+import PhotoSignUp from "../views/pages/photographSignUP";
 
 function BaseRoute() {
   return (
@@ -51,6 +52,8 @@ function BaseRoute() {
         <GuestRoute component={Register} path="/register" />
         {/* <GuestRoute component={Login} path='/login' /> */}
         <GuestRoute component={SignUp} path="/SignUp" />
+        <GuestRoute component={PhotoSignUp} path="/photographer" />
+    
         {/* <GuestRoute component={Login} path="/Login" /> */}
         <GuestRoute component={Portfolio} path="/Portfolio" />
 

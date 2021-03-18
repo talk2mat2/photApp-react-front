@@ -11,10 +11,13 @@ import logo from '../assets/logo.png'
 import { useSelector, useDispatch } from 'react-redux'
 import AlertDialog from '../components/AlertDialog'
 import languageJson from '../config/language'
+import { useHistory } from 'react-router-dom'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { signIn, clearLoginError } from '../actions/authactions'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { LOGINSUCCESS } from '../redux/action'
 
 const useStyles = makeStyles((theme) => ({
 	'@global': {
@@ -49,13 +52,37 @@ const Login = (props) => {
 	const classes = useStyles()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [ErrorMessage, setErrorMessage] = useState('')
 	const [loading, setLoading] = useState(false)
+	const history = useHistory()
+
+	const handleLogin = (values) => {
+		axios
+			.post(`${process.env.REACT_APP_API_URL}/users/Login`, values)
+			.then((res) => {
+				setLoading(true)
+				console.log(res.data)
+				// setIsregistered(true)
+				history.push('/dashboard')
+				dispatch(LOGINSUCCESS(res.data))
+			})
+			.catch((err) => {
+				setLoading(true)
+				if (err.response) {
+					console.log(err.response.data.message)
+					// err.response.data.message &&
+					// 	setErrorMessage(err.response.data.message)
+					// err.response.data.error && setIsregistered(false)
+				}
+				console.log(err)
+			})
+	}
 
 	useEffect(() => {
 		const abortController = new AbortController()
-		if (auth.info) {
-			props.history.push('/dashboard')
-		}
+		// if (auth.info) {
+		// 	props.history.push('/dashboard')
+		// }
 		return function cleanup() {
 			abortController.abort()
 		}
@@ -72,13 +99,15 @@ const Login = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		setLoading(true)
-		dispatch(signIn(email, password))
+		// dispatch(signIn(email, password))
+		handleLogin({ email, password })
 	}
 
 	const handleClose = () => {
 		setEmail('')
 		setPassword('')
-		dispatch(clearLoginError())
+		setErrorMessage('')
+		// dispatch(clearLoginError())
 	}
 
 	var uiConfig = {
@@ -154,8 +183,8 @@ const Login = (props) => {
 					<Link to='/register'>Register</Link>
 				</Typography>
 			</div>
-			<AlertDialog open={auth.error.flag} onClose={handleClose}>
-				{languageJson.sign_in_error}
+			<AlertDialog open={ErrorMessage} onClose={handleClose}>
+				{ErrorMessage}
 			</AlertDialog>
 		</Container>
 	)

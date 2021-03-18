@@ -6,6 +6,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import AppMenu from '../components/AppMenu'
 import { useDispatch } from 'react-redux'
 import { signOut } from '../actions/authactions'
+import { LOGINOUTUSER } from '../redux/action'
+import { useSelector } from 'react-redux'
 
 const drawerWidth = 240
 
@@ -46,13 +48,15 @@ function ResponsiveDrawer(props) {
 	const classes = useStyles()
 	const theme = useTheme()
 	const [mobileOpen, setMobileOpen] = React.useState(true)
+	const CurrentUser = useSelector((state) => state.user.currentUser)
+	const userData = CurrentUser && CurrentUser.userData
 
 	function handleDrawerToggle() {
 		setMobileOpen(!mobileOpen)
 	}
 	const dispatch = useDispatch()
 	const LogOut = () => {
-		dispatch(signOut())
+		dispatch(LOGINOUTUSER())
 	}
 	return (
 		<div className={classes.root}>

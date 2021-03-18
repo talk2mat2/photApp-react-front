@@ -6315,6 +6315,12 @@ list-blue i {
   /* box-shadow: 5px 10px 8px #c2c2c2 */
   box-shadow: 0 0 10px rgb(190, 190, 190);
   padding: 7px;
+  color: #fff;
+  font-size: 13px;
+  
+}
+.signup:focus{
+  outline: none;
 }
 .signup:hover{
     background-color: rgb(141, 5, 5) ;

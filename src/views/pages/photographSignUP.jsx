@@ -8,8 +8,10 @@ import {useSelector} from 'react-redux'
 import { useHistory } from "react-router-dom";
 import "./SignupStyle.css";
 import { Route, Switch, Link } from "react-router-dom";
+import PhotographysignUppage from "./photography_sign-up_page";
+import PhotographerLoginpage from './PhotographerLoginPage'
 
-const SignUp = (props) => {
+const PhotoSignUp = (props) => {
   const CurrentUser = useSelector((state) => state.user.currentUser);
   const { match } = props;
   const history = useHistory();
@@ -33,10 +35,10 @@ const SignUp = (props) => {
       <section id="home" className="pt-0 mt-0">
         <Switch>
           <Route exact path={match.url}>
-            <Loginpage handleSignUpPage={handleSignUpPage} />
+            <PhotographerLoginpage handleSignUpPage={handleSignUpPage} />
           </Route>
           <Route path={`${match.url}/signup`}>
-            <Singuppage handleLoginPage={handleLoginPage} />
+            <PhotographysignUppage handleLoginPage={handleLoginPage} />
           </Route>
         </Switch>
       </section>
@@ -44,4 +46,4 @@ const SignUp = (props) => {
   );
 };
 
-export default SignUp;
+export default PhotoSignUp;

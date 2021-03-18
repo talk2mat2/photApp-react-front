@@ -60,6 +60,8 @@ const Profile = (props) => {
 	const auth = useSelector((state) => state.auth)
 	const dispatch = useDispatch()
 	const classes = useStyles()
+	const CurrentUser = useSelector((state) => state.user.currentUser)
+	const userData = CurrentUser && CurrentUser.userData
 
 	const [age, setAge] = React.useState('')
 
@@ -77,11 +79,11 @@ const Profile = (props) => {
 						<Grid item xs container direction='column' spacing={2}>
 							<Grid item xs>
 								<Typography gutterBottom variant='h5'>
-									{auth.info.displayName}
+									{userData.fname + ' ' + userData.lname}
 								</Typography>
-								<Typography variant='body2'>Phone Number</Typography>
+								<Typography variant='body2'>{userData.mobile}</Typography>
 								<Typography variant='body2' gutterBottom>
-									{auth.info.email}
+									{userData.Email}
 								</Typography>
 							</Grid>
 						</Grid>
@@ -142,7 +144,7 @@ const Profile = (props) => {
 					</Grid>
 					<Grid item xs={12} sm container>
 						<Typography variant='subtitle1' gutterBottom>
-							{auth.info.email}
+							{userData.Email}
 						</Typography>
 						{/* <TextField
 							disabled

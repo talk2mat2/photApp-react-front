@@ -11,7 +11,7 @@ const Map = withScriptjs(
 	withGoogleMap((props) => (
 		<GoogleMap defaultZoom={10} defaultCenter={props.mapcenter}>
 			<Marker
-				position={props.locations.location}
+				position={props.mapcenter}
 				// key={props.locations.name}
 				icon={{
 					url: '../assets/car.png',
@@ -21,9 +21,9 @@ const Map = withScriptjs(
 				// 	size: { width: 32, height: 32 },
 				// }}
 			>
-				<InfoWindow>
+				{/* <InfoWindow>
 					<div>{props.locations.name}</div>
-				</InfoWindow>
+				</InfoWindow> */}
 			</Marker>
 		</GoogleMap>
 	))

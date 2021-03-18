@@ -6,6 +6,7 @@ import languageJson from '../../config/language'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import CardContent from '@material-ui/core/CardContent'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -77,19 +78,21 @@ const Looking = () => {
 		// const signal = abortController.signal
 		if (mylocation == null) {
 			navigator.geolocation.getCurrentPosition(
-				(position) =>
+				(position) => {
 					setMylocation({
 						name: 'My Location',
 						locations: {
 							lat: position.coords.latitude,
 							lng: position.coords.longitude,
 						},
-					}),
+					})
+					alert(position.coords.latitude)
+				},
 				(err) => console.log(err),
 				option
 			)
 		}
-		document.title = 'Request a ride | TransportWiz'
+		document.title = 'Higher a photographer | Ogaphotos'
 
 		return function cleanup() {
 			abortController.abort()
@@ -197,13 +200,13 @@ const Looking = () => {
 						<Grid container spacing={2}>
 							<Grid item>
 								<ListItemIcon>
-									<Restaurant />
+									<PhotoCameraIcon />
 								</ListItemIcon>
 							</Grid>
 							<Grid item xs={12} sm container>
 								<Grid item container direction='column' spacing={2}>
 									<Grid item xs>
-										<Typography variant='h5'>Where from?</Typography>
+										<Typography variant='h5'>Session Location?</Typography>
 										<Button
 											onClick={() => setUi1(!ui1)}
 											className={classes.selectDestBtn}
@@ -258,7 +261,7 @@ const Looking = () => {
 						<Grid container spacing={2}>
 							<Grid item>
 								<ListItemIcon>
-									<Restaurant />
+									<PhotoCameraIcon />
 								</ListItemIcon>
 							</Grid>
 							<Grid item xs={12} sm container>

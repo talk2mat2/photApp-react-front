@@ -11,7 +11,7 @@ import axios from "axios"
 import {LOGINSUCCESS} from "../../redux/action"
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-const Singuppage = (props) => {
+const PhotographysignUppage = (props) => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -42,7 +42,7 @@ const Singuppage = (props) => {
 const handleSignup=(values)=>{
   setLoading(true);
       axios
-        .post(`${process.env.REACT_APP_API_URL}/users/Register`, values)
+        .post(`${process.env.REACT_APP_API_URL}/photographer/Register`, values)
         .then((res) => {
           setLoading(false);
           console.log(res.data);
@@ -102,13 +102,13 @@ const handleSignup=(values)=>{
           <h4 className="headings">
             <Link href="#sign-up" className="su" id="sup" onclick="signUp()">
               {" "}
-              SIGN UP{" "}
+              photoSIGN UP{" "}
             </Link>
           </h4>
           <h4 className="heading">
             <Link onClick={() => props.handleLoginPage()} id="log" onclick="login()">
               {" "}
-              LOGIN
+              phorologinLOGIN
             </Link>{" "}
           </h4>
           {loading? <CircularProgress size={24} style={{fontSize:20,color:"white",position:"absolute",zIndex:3,marginLeft:"auto",marginRight:"auto",top:4}} />:null}
@@ -168,4 +168,4 @@ const handleSignup=(values)=>{
   );
 };
 
-export default Singuppage;
+export default PhotographysignUppage;

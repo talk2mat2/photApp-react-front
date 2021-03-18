@@ -8,7 +8,7 @@ import AlertDialog from "../../components/AlertDialog";
 import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios'
 import {LOGINSUCCESS  } from '../../redux/action'
-const Loginpage = (props) => {
+const PhotographerLoginpage = (props) => {
   //   const { handleDisplaySignUp } = props;
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Loginpage = (props) => {
 
   const handleLogin = (values) => {
 		axios
-			.post(`${process.env.REACT_APP_API_URL}/users/Login`, values)
+			.post(`${process.env.REACT_APP_API_URL}/photographer/Login`, values)
 			.then((res) => {
 				setLoading(false)
 				console.log(res.data)
@@ -134,4 +134,4 @@ const Loginpage = (props) => {
   );
 };
 
-export default Loginpage;
+export default PhotographerLoginpage;

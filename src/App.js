@@ -15,14 +15,14 @@ import BaseRoute from "./components/BaseRoute";
 function App() {
   store.dispatch(fetchUser());
   return (
-    <Provider store={store}>
+<>
       {/* <AuthLoading> */}
       <BaseRoute />
       {/* <SignUp />
         <About />
         <Contact /> */}
       {/* </AuthLoading> */}
-    </Provider>
+ </>
   );
 }
 
