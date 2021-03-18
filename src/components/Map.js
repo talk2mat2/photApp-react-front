@@ -21,9 +21,9 @@ const Map = withScriptjs(
 				// 	size: { width: 32, height: 32 },
 				// }}
 			>
-				{/* <InfoWindow>
+				<InfoWindow>
 					<div>{props.locations.name}</div>
-				</InfoWindow> */}
+				</InfoWindow>
 			</Marker>
 		</GoogleMap>
 	))
