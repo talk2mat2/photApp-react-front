@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn, clearLoginError } from "../../actions/authactions";
-import languageJson from "../../config/language";
+
+
 import AlertDialog from "../../components/AlertDialog";
 import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios'

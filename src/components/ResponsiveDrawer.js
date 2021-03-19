@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { AppBar, CssBaseline, Drawer, Hidden } from '@material-ui/core'
@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { signOut } from '../actions/authactions'
 import { LOGINOUTUSER } from '../redux/action'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 const drawerWidth = 240
 
@@ -45,11 +46,13 @@ const useStyles = makeStyles((theme) => ({
 
 function ResponsiveDrawer(props) {
 	const { container } = props
+	const [mylocation, setMylocation] = useState(null)
 	const classes = useStyles()
 	const theme = useTheme()
 	const [mobileOpen, setMobileOpen] = React.useState(true)
 	const CurrentUser = useSelector((state) => state.user.currentUser)
 	const userData = CurrentUser && CurrentUser.userData
+	const token = CurrentUser && CurrentUser.token
 
 	function handleDrawerToggle() {
 		setMobileOpen(!mobileOpen)
@@ -58,6 +61,57 @@ function ResponsiveDrawer(props) {
 	const LogOut = () => {
 		dispatch(LOGINOUTUSER())
 	}
+	const option = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0,
+	}
+	useEffect(() => {
+		if (mylocation === null) {
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					setMylocation({
+						lat: position.coords.latitude,
+						lng: position.coords.longitude,
+					})
+					// alert(position.coords.latitude)
+				},
+				(err) => console.log(err),
+				option
+			)
+		}
+	}, [])
+	useEffect(() => {
+		const updateMyLocation = (values) => {
+			alert('called')
+			axios
+				.post(
+					`${process.env.REACT_APP_API_URL}/photographer/updateMyLocation`,
+					values,
+					{
+						headers: { authorization: token },
+					}
+				)
+				.then((res) => {
+					console.log(res.data)
+					// setIsregistered(true)
+					// history.push('/dashboard')
+				})
+				.catch((err) => {
+					if (err.response) {
+						console.log(err.response.data.message)
+						// err.response.data.message &&
+
+						// err.response.data.error && setIsregistered(false)
+					}
+					console.log(err)
+				})
+		}
+
+		mylocation &&
+			userData.isPhotographer &&
+			updateMyLocation({ lat: mylocation.lat, lng: mylocation.lng })
+	}, [mylocation])
 	return (
 		<div className={classes.root}>
 			<CssBaseline />

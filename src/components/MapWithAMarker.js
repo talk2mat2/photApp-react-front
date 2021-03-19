@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import { compose } from 'recompose'
 import {
 	withScriptjs,
@@ -7,6 +8,7 @@ import {
 	Marker,
 	InfoWindow,
 } from 'react-google-maps'
+import CameraIcon from '../assets/cameraIcon.png'
 
 const baseIcon = 'https://i.imgur.com/u5Wy1dx.png'
 const iconBase =
@@ -17,9 +19,12 @@ const MapWithAMarker = compose(
 	withScriptjs,
 	withGoogleMap
 )((props) => {
+	useEffect(() => {
+		console.log(props.drivers)
+	})
 	return (
-		<GoogleMap defaultZoom={8} defaultCenter={props.selectedMarker.locations}>
-			{props.markers &&
+		<GoogleMap defaultZoom={12} defaultCenter={props.selectedMarker.locations}>
+			{/* {props.markers &&
 				props.markers.map((marker, index) => {
 					return (
 						<Marker
@@ -36,34 +41,17 @@ const MapWithAMarker = compose(
 							</InfoWindow>
 						</Marker>
 					)
-				})}
-			{props.drivers &&
-				props.drivers.map((marker, index) => {
-					return (
-						<Marker
-							key={index}
-							// onClick=
-							position={{
-								lat: marker.lat,
-								lng: marker.long,
-							}}
-							icon={baseIcon}
-						>
-							{/* <InfoWindow>
-								<div>{marker.name}</div>
-							</InfoWindow> */}
-						</Marker>
-					)
-				})}
-			{props.selectedMarker && (
+				})} */}
+
+			{props.sessionVenue && (
 				<Marker
 					// onClick=
 					position={{
-						lat: props.selectedMarker.locations.lat,
-						lng: props.selectedMarker.locations.lng,
+						lat: props.sessionVenue.locations.lat,
+						lng: props.sessionVenue.locations.lng,
 					}}
 					color='blue'
-					label='S'
+					label='Me'
 					// icon={baseIcon}
 				>
 					{/* <InfoWindow>
@@ -71,6 +59,24 @@ const MapWithAMarker = compose(
 					</InfoWindow> */}
 				</Marker>
 			)}
+			{props.photographers.map((item) => (
+				<Marker
+					position={{ lat: item.lat, lng: item.lng }}
+					color='blue'
+					label='S'
+					icon={CameraIcon}
+				>
+					<InfoWindow>
+						<>
+							{' '}
+							<PhotoCameraIcon />
+							<p>{item.name}</p>
+						</>
+					</InfoWindow>
+				</Marker>
+			))}
+
+			{/* <Marker position={{ lat: 6.6138, lng: 3.358 }} color='blue' label='S' /> */}
 		</GoogleMap>
 	)
 })

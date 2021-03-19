@@ -9,20 +9,21 @@ import {
 
 const Map = withScriptjs(
 	withGoogleMap((props) => (
-		<GoogleMap defaultZoom={10} defaultCenter={props.mapcenter}>
+		<GoogleMap defaultZoom={15} defaultCenter={props.mapcenter}>
 			<Marker
 				position={props.mapcenter}
 				// key={props.locations.name}
-				icon={{
-					url: '../assets/car.png',
-				}}
+				// icon={{
+				// 	url: '../assets/car.png',
+				// }}
 				// options={{
 				// 	icon: require('../assets/car.png'),
 				// 	size: { width: 32, height: 32 },
 				// }}
 			>
 				<InfoWindow>
-					<div>{props.locations.name}</div>
+					<p>me</p>
+					{/* <div>{props.locations.name}</div> */}
 				</InfoWindow>
 			</Marker>
 		</GoogleMap>

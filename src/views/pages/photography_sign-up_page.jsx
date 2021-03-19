@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn, clearLoginError } from "../../actions/authactions";
+
 import languageJson from "../../config/language";
 import AlertDialog from "../../components/AlertDialog";
 import { clearSignupError, signUp } from "../../actions/authactions";
@@ -12,7 +12,7 @@ import {LOGINSUCCESS} from "../../redux/action"
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 const PhotographysignUppage = (props) => {
-  const auth = useSelector((state) => state.auth);
+  // const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
   const [email, setEmail] = useState("");
@@ -23,12 +23,9 @@ const PhotographysignUppage = (props) => {
   const [confpass, setConfPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState('')
+  const [mylocation, setMylocation] = useState(null)
 
-  useEffect(() => {
-    if (auth.info) {
-      history.push("/");
-    }
-  });
+
 
   const handleEmailChange = (e) => setEmail(e.target.value);
 
@@ -38,7 +35,27 @@ const PhotographysignUppage = (props) => {
 
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleConfPasswordChange = (e) => setConfPassword(e.target.value);
-
+  const option = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0,
+	}
+  useEffect(()=>{
+    if (mylocation === null) {
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					setMylocation({
+							lat: position.coords.latitude,
+							lng: position.coords.longitude,
+					
+					})
+					alert(position.coords.latitude)
+				},
+				(err) => console.log(err),
+				option
+			)
+		}
+  },[])
 const handleSignup=(values)=>{
   setLoading(true);
       axios
@@ -64,8 +81,10 @@ const handleSignup=(values)=>{
     e.preventDefault();
  if(password !==confpass){
    return setErrorMessage('Both password dont match')}
+  //  updateMyLocation
     // dispatch(signUp(email, password, mobile, fname, lname));handle
-    handleSignup({email,password,fname,lname,mobile})
+    if(mylocation){handleSignup({email,password,fname,lname,mobile,lat:mylocation.lat,lng:mylocation.lng})}
+ else{handleSignup({email,password,fname,lname,mobile})}
   };
 
   const handleClose = () => {
