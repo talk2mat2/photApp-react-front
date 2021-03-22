@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import { Button, Grid, InputLabel, TextField } from '@material-ui/core'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
+import Styled from 'styled-components'
 import Select from '@material-ui/core/Select'
 import avatar from '../../assets/avatar.jpg'
 import {
@@ -67,6 +68,25 @@ const Profile = (props) => {
 
 	const handleChange = (event) => {
 		setAge(event.target.value)
+	}
+	const Buttons = Styled(Button)`
+  && {
+
+
+margin-top:8px;
+    color: rgb(190, 10, 10);
+    border-color: rgb(190, 10, 10);
+    &:focus {
+      background-color: white;
+    }
+    // @media (max-width: 1100px) {
+    //   display: none;
+    // }
+  }
+`
+	const ButtonsStyle = {
+		marginTop: '50px',
+		marginLeft: '80px',
 	}
 	return (
 		<div>
@@ -172,14 +192,13 @@ const Profile = (props) => {
 						</FormControl>
 					</Grid>
 				</Grid>
-				<Button
-					variant='contained'
-					size='large'
-					color='primary'
-					className={classes.margin}
+				<Buttons
+					style={{ ...ButtonsStyle, minWidth: '100px' }}
+					variant='outlined'
+					color='secondary'
 				>
-					Save Changes
-				</Button>
+					<small> save Changes</small>
+				</Buttons>
 			</Paper>
 		</div>
 	)

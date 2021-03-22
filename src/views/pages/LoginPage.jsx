@@ -55,18 +55,18 @@ const Loginpage = (props) => {
 		setErrorMessage('')
 		// dispatch(clearLoginError())
 	}
-  useEffect(() => {
-    const abortController = new AbortController();
-    auth.error.flag&&setLoading(false)
-    // if (auth.info) {
-    //   history.push("/dashboard");
+  // useEffect(() => {
+  //   const abortController = new AbortController();
+  //   auth.error.flag&&setLoading(false)
+  //   // if (auth.info) {
+  //   //   history.push("/dashboard");
       
-    // }
-    return function cleanup() {
-      abortController.abort();
-    };
+  //   // }
+  //   return function cleanup() {
+  //     abortController.abort();
+  //   };
    
-  });
+  // });
   return (
     <div className="form-wrap" id="loging">
       <Link
@@ -126,6 +126,10 @@ const Loginpage = (props) => {
           Don't have an account?{" "}
           <Link onClick={() => props.handleSignUpPage()}>Sign Up </Link>
         </p>
+        <Link to="/photographer"><small>
+         Login as A photographer{" "}
+         
+        </small></Link>
       </form>
       <AlertDialog open={ErrorMessage} onClose={handleClose}>
 				{ErrorMessage}

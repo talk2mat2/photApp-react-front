@@ -38,8 +38,8 @@ const Dashboard = () => {
 						locations={locations}
 						googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCJMOf24QZuH0yO64jYsiEC2s0eDLE7-ic&v=3.exp&libraries=geometry,drawing,places'
 						loadingElement={<div style={{ height: `480px` }} />}
-						containerElement={<div style={{ height: `480px` }} />}
-						mapElement={<div style={{ height: `480px` }} />}
+						containerElement={<div style={{ height: `95vh` }} />}
+						mapElement={<div style={{ height: `100%` }} />}
 					/>
 				</Paper>
 			) : (

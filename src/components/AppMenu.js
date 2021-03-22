@@ -7,6 +7,7 @@ import {
 	MenuItem,
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { LOGINOUTUSER } from '../redux/action'
 
@@ -44,10 +45,12 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 }))
-function AppMenu() {
+function AppMenu(props) {
 	const dispatch = useDispatch()
 	const classes = useStyles()
 	const [active, setActive] = useState('')
+	const CurrentUser = useSelector((state) => state.user.currentUser)
+	const userData = CurrentUser && CurrentUser.userData
 	const LogOut = () => {
 		dispatch(LOGINOUTUSER())
 	}
@@ -90,20 +93,28 @@ function AppMenu() {
 			{/* <Divider /> */}
 
 			<MenuList>
-				<MenuItem
-					component={Link}
-					to='/looking'
-					onClick={handleActive('looking')}
-				>
-					<button className='signup'>Hire A Photographer</button>
-				</MenuItem>
+				{!userData.isPhotographer ? (
+					<MenuItem
+						component={Link}
+						to='/looking'
+						onClick={() => {
+							handleActive('looking')
+							props.handleDrawerToggle()
+						}}
+					>
+						<button className='signup'>Hire A Photographer</button>
+					</MenuItem>
+				) : null}
 				<MenuItem
 					className={
 						(classes.menuItem, active === 'dashboard' && classes.active)
 					}
 					component={Link}
 					to='/dashboard'
-					onClick={handleActive('dashboard')}
+					onClick={() => {
+						props.handleDrawerToggle()
+						handleActive('dashboard')
+					}}
 				>
 					<ListItemIcon>
 						<DashboardIcon />
@@ -125,17 +136,22 @@ function AppMenu() {
 						{languageJson.request_a_trip}
 					</Typography>
 				</MenuItem> */}
-				<MenuItem
-					className={(classes.menuItem, active === 'trips' && classes.active)}
-					onClick={handleActive('trips')}
-					component={Link}
-					to='/trips'
-				>
-					<ListItemIcon>
-						<ReceiptTwoTone />
-					</ListItemIcon>
-					<Typography variant='inherit'>My Sessions</Typography>
-				</MenuItem>
+				{userData.isPhotographer ? (
+					<MenuItem
+						className={(classes.menuItem, active === 'trips' && classes.active)}
+						onClick={() => {
+							props.handleDrawerToggle()
+							handleActive('trips')
+						}}
+						component={Link}
+						to='/trips'
+					>
+						<ListItemIcon>
+							<ReceiptTwoTone />
+						</ListItemIcon>
+						<Typography variant='inherit'>Bookings received</Typography>
+					</MenuItem>
+				) : null}
 				{/* <MenuItem
 					className={
 						(classes.menuItem, active === 'trans_eat' && classes.active)
@@ -151,16 +167,19 @@ function AppMenu() {
 				</MenuItem> */}
 				<MenuItem
 					className={(classes.menuItem, active === 'eats' && classes.active)}
-					onClick={handleActive('eats')}
+					onClick={() => {
+						props.handleDrawerToggle()
+						handleActive('eats')
+					}}
 					component={Link}
 					to='/eats'
 				>
 					<ListItemIcon>
 						<Restaurant />
 					</ListItemIcon>
-					<Typography variant='inherit'>Phtoto Sessions History</Typography>
+					<Typography variant='inherit'>Sessions History</Typography>
 				</MenuItem>
-				<MenuItem
+				{/* <MenuItem
 					className={
 						(classes.menuItem, active === 'delivery' && classes.active)
 					}
@@ -172,8 +191,8 @@ function AppMenu() {
 						<DirectionsBus />
 					</ListItemIcon>
 					<Typography variant='inherit'>{languageJson.delivery}</Typography>
-				</MenuItem>
-				<MenuItem
+				</MenuItem> */}
+				{/* <MenuItem
 					className={
 						(classes.menuItem, active === 'couriers' && classes.active)
 					}
@@ -187,10 +206,13 @@ function AppMenu() {
 					<Typography variant='inherit'>
 						{languageJson.delivery_history}
 					</Typography>
-				</MenuItem>
+				</MenuItem> */}
 				<MenuItem
 					className={(classes.menuItem, active === 'wallet' && classes.active)}
-					onClick={handleActive('wallet')}
+					onClick={() => {
+						props.handleDrawerToggle()
+						handleActive('wallet')
+					}}
 					component={Link}
 					to='/wallet'
 				>
@@ -202,7 +224,10 @@ function AppMenu() {
 
 				<MenuItem
 					className={(classes.menuItem, active === 'promos' && classes.active)}
-					onClick={handleActive('promos')}
+					onClick={() => {
+						props.handleDrawerToggle()
+						handleActive('promos')
+					}}
 					component={Link}
 					to='/promos'
 				>
@@ -213,7 +238,10 @@ function AppMenu() {
 				</MenuItem>
 				<MenuItem
 					className={(classes.menuItem, active === 'support' && classes.active)}
-					onClick={handleActive('support')}
+					onClick={() => {
+						props.handleDrawerToggle()
+						handleActive('support')
+					}}
 					component={Link}
 					to='/support'
 				>
@@ -226,7 +254,10 @@ function AppMenu() {
 				</MenuItem>
 				<MenuItem
 					className={(classes.menuItem, active === 'profile' && classes.active)}
-					onClick={handleActive('profile')}
+					onClick={() => {
+						props.handleDrawerToggle()
+						handleActive('profile')
+					}}
 					component={Link}
 					to='/profile'
 				>

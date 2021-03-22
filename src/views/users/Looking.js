@@ -5,8 +5,10 @@ import MapWithAMarker from '../../components/MapWithAMarker'
 import languageJson from '../../config/language'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
+import styled from 'styled-components'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 import CardActions from '@material-ui/core/CardActions'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import CardContent from '@material-ui/core/CardContent'
@@ -18,6 +20,8 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import ListItemText from '@material-ui/core/ListItemText'
+import { GETPHOTOGRAPHERSSUCCESS, SETMYLOCATION } from '../../redux/action'
+import Styled from 'styled-components'
 import {
 	Restaurant,
 	ExpandMore,
@@ -33,11 +37,11 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#312d2d',
 	},
 	floatingCard: {
-		maxWidth: 345,
+		maxWidth: '300px',
 		position: 'absolute',
 		top: '90px',
 		zIndex: '999',
-		minWidth: '330px',
+		minWidth: '320px',
 		maxHeight: '500px',
 	},
 	selectDest: {
@@ -59,10 +63,90 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '30px',
 	},
 }))
+const floatingCard = styled.div`
+	max-width: 300px;
+	position: absolute;
+	top: 90px;
+	zindex: 99;
+	min-width: 320px;
+	max-height: 500px;
+`
+const ConfirmAgree = Styled.div`
 
+box-sizing:border-box;
+background-color: #fff;
+height: 25vh;
+margin-top:5px;
+// position: fixed;
+// z-index: 999;
+width: 100%;
+// margin-left:270px;
+// margin-right:auto;
+// left:0;
+// right:0;
+display:flex;
+flex-direction:column;
+align-items:center;
+bottom:2px;
+border-radius:3px;
+box-shadow: 0 5px 10px rgba(134, 137, 148, 0.09);
+animation: apper 1s ease;
+animation-iteration-count: 1;
+
+@keyframes apper {
+    from {
+      opacity: 0;
+	  transform: translateY(-100px);
+    }
+    to {
+		opacity: 1;
+    }
+  }
+`
+const MidText = Styled.p`
+  font-size: 13px;
+  color: grey;
+  font-weight: 500;
+
+`
+const Buttons = Styled(Button)`
+  && {
+
+
+margin-top:8px;
+    color: rgb(190, 10, 10);
+    border-color: rgb(190, 10, 10);
+    &:focus {
+      background-color: white;
+    }
+    // @media (max-width: 1100px) {
+    //   display: none;
+    // }
+  }
+`
+const PriceSection = Styled.div`
+margin-top:15px;
+width:100%;
+height:50px;
+background-color: #f1f0f0;
+display:flex;
+
+flex-direction: row;
+align-items:center;
+justify-content:center;
+*{
+	margin-left:20px;
+	margin-right:20px;
+}
+`
+const ButtonsStyle = {
+	width: '200px',
+	alignSelf: 'center',
+}
 const Looking = () => {
 	const [mylocation, setMylocation] = useState(null)
-	const [sessionVenue, setsessionVenue] = useState(null)
+	const [sessionVenue, setsessionVenue] = useState({})
+	const [ConfirmAgreeVisible, setConfirmAgreeVisible] = useState(false)
 	const [locations, setLocations] = useState([])
 	const [CardVisible, setCardVisible] = useState(true)
 	const [Searching, setSearching] = useState(false)
@@ -73,6 +157,9 @@ const Looking = () => {
 	const [filteredFromCities, setFilteredFromCities] = useState([])
 	const [filteredToCities, setFilteredToCities] = useState([])
 	const [ui1, setUi1] = useState(true)
+	const CurrentUser = useSelector((state) => state.user.currentUser)
+	const token = CurrentUser && CurrentUser.token
+	const dispatch = useDispatch()
 	const option = {
 		enableHighAccuracy: true,
 		timeout: 5000,
@@ -80,8 +167,10 @@ const Looking = () => {
 	}
 
 	useEffect(() => {
+		setCardVisible(true)
 		const abortController = new AbortController()
 		// const signal = abortController.signal
+
 		if (mylocation == null) {
 			navigator.geolocation.getCurrentPosition(
 				(position) => {
@@ -103,7 +192,7 @@ const Looking = () => {
 		return function cleanup() {
 			abortController.abort()
 		}
-	})
+	}, [])
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -170,14 +259,16 @@ const Looking = () => {
 		await axios
 			.post(
 				`${process.env.REACT_APP_API_URL}/users/SearchPhotogrAphersCloser`,
-				values
+				values,
+				{ headers: { authorization: token } }
 			)
 			.then((res) => {
 				setSearching(false)
 				console.log(res.data)
 				// setIsregistered(true)
 				// history.push('/dashboard')
-				// dispatch(LOGINSUCCESS(res.data))
+				dispatch(GETPHOTOGRAPHERSSUCCESS(res.data.userData))
+				setConfirmAgreeVisible(true)
 			})
 			.catch((err) => {
 				setSearching(false)
@@ -191,7 +282,11 @@ const Looking = () => {
 				console.log(err)
 			})
 	}
-	const handleToClick = (long, lat, name) => {
+	const handleToClick = (long1, lat1, name) => {
+		// console.log(long, lat)
+		// console.log(typeof long)
+		let lng = parseFloat(long1)
+		let lat = parseFloat(lat1)
 		return function () {
 			// setLocations([
 			// 	{
@@ -206,6 +301,7 @@ const Looking = () => {
 			// lat and long of users not far from our lat long by posting our lat long to backend
 			setCardVisible(false)
 			console.log(mylocation)
+			// console.log(long, lat)
 			// setMylocation({
 			// 	name: 'My Location',
 			// 	locations: {
@@ -215,13 +311,20 @@ const Looking = () => {
 			// })
 			setsessionVenue({
 				name: 'My Location',
-				locations: {
-					lat: 6.6018,
-					lng: 3.3515,
-				},
+
+				lat: lat,
+				lng: lng,
 			})
-			handleSearchPhotoGrphers({ lat: 6.6018, lng: 3.3515 })
-			setAddress2(name)
+			// dispatch(
+			// 	SETMYLOCATION({
+			// 		name: 'My Location',
+
+			// 		lat: lat,
+			// 		lng: long,
+			// 	})
+			// )
+			handleSearchPhotoGrphers({ sesionlocation: { lat: lat, lng: lng } })
+			// setAddress2(name)
 		}
 	}
 	const handleClick = (marker, event) => {
@@ -230,15 +333,16 @@ const Looking = () => {
 		setAddress2(marker)
 	}
 
-	const photographers = [
-		{ lat: 6.6138, lng: 3.358, name: 'wale' },
-		{ lat: 6.579, lng: 3.3495, name: 'jogn' },
-		{ lat: 6.779, lng: 3.3295, name: 'uche' },
-		{ lat: 6.59, lng: 3.3095, name: 'gbenga' },
-	]
+	// const photographers = [
+	// 	{ lat: 6.6138, lng: 3.358, name: 'wale' },
+	// 	{ lat: 6.579, lng: 3.3495, name: 'jogn' },
+	// 	{ lat: 6.779, lng: 3.3295, name: 'uche' },
+	// 	{ lat: 6.59, lng: 3.3095, name: 'gbenga' },
+	// ]
+	const photographers = useSelector((state) => state.photographers)
 	const classes = useStyles()
 	return (
-		<div>
+		<div style={{ display: 'flex', flexDirection: 'column' }}>
 			{CardVisible ? (
 				<Card className={classes.floatingCard}>
 					<CardContent className={classes.selectDest}>
@@ -253,7 +357,12 @@ const Looking = () => {
 									<Grid item xs>
 										<Typography variant='h5'>Session Location?</Typography>
 										{mylocation ? (
-											<Link onClick={handleToClick(1, 2, 3)}>
+											<Link
+												onClick={handleToClick(
+													mylocation.locations.lng,
+													mylocation.locations.lat
+												)}
+											>
 												<Typography variant='p'>
 													Select my current location ?
 												</Typography>
@@ -296,7 +405,7 @@ const Looking = () => {
 								<MenuItem
 									button
 									key={index}
-									onClick={handleToClick(city.lat, city.lng, city.name)}
+									onClick={handleToClick(city.lng, city.lat, city.name)}
 								>
 									<ListItemIcon>
 										<Avatar>
@@ -329,9 +438,14 @@ const Looking = () => {
 				</>
 			) : null}
 			{mylocation ? (
-				<Paper>
+				<Paper
+					style={{
+						width: '100%',
+						height: ConfirmAgreeVisible ? '70vh' : '95vh',
+					}}
+				>
 					{/* <Map
-						mapcenter={mylocation}
+						mapcenter={mylocation} 
 						locations={locations}
 						googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCJMOf24QZuH0yO64jYsiEC2s0eDLE7-ic&v=3.exp&libraries=geometry,drawing,places'
 						loadingElement={<div style={{ height: `480px` }} />}
@@ -339,6 +453,7 @@ const Looking = () => {
 						mapElement={<div style={{ height: `480px` }} />}
 					/> */}
 					<MapWithAMarker
+						mapcenter={sessionVenue}
 						sessionVenue={sessionVenue}
 						selectedMarker={mylocation}
 						photographers={photographers}
@@ -346,7 +461,7 @@ const Looking = () => {
 						onClick={handleClick}
 						googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCJMOf24QZuH0yO64jYsiEC2s0eDLE7-ic&v=3.exp&libraries=geometry,drawing,places'
 						loadingElement={<div style={{ height: `100%` }} />}
-						containerElement={<div style={{ height: `400px` }} />}
+						containerElement={<div style={{ height: '100%', flex: 1 }} />}
 						mapElement={<div style={{ height: `100%` }} />}
 					/>
 				</Paper>
@@ -358,6 +473,31 @@ const Looking = () => {
 					{languageJson.allow_location}
 				</Typography>
 			)}
+
+			{ConfirmAgreeVisible ? (
+				<ConfirmAgree>
+					<PriceSection>
+						<>
+							<img
+								src='./camera.svg'
+								style={{ width: '30px', height: '30px' }}
+								alt='img'
+							/>
+
+							<small>price: N750-N830/min </small>
+
+							<small>photo/video services</small>
+						</>
+					</PriceSection>
+					<Buttons
+						style={{ ...ButtonsStyle, minWidth: '100px' }}
+						variant='outlined'
+						color='secondary'
+					>
+						<small> Confirm Photo Express</small>
+					</Buttons>
+				</ConfirmAgree>
+			) : null}
 		</div>
 	)
 }

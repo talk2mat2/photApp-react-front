@@ -58,7 +58,7 @@ const PhotographerLoginpage = (props) => {
 	}
   useEffect(() => {
     const abortController = new AbortController();
-    auth.error.flag&&setLoading(false)
+    // auth.error.flag&&setLoading(false)
     // if (auth.info) {
     //   history.push("/dashboard");
       
@@ -102,7 +102,7 @@ const PhotographerLoginpage = (props) => {
           </h4>
           {loading? <CircularProgress size={24} style={{fontSize:20,color:"white",position:"absolute",zIndex:3,marginLeft:"auto",marginRight:"auto",top:4}} />:null}
         </div>
-      
+  <div style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'center'}}>    <small >Photographers Login</small></div>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}

@@ -24,11 +24,7 @@ const Singuppage = (props) => {
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState('')
 
-  useEffect(() => {
-    if (auth.info) {
-      history.push("/");
-    }
-  });
+
 
   const handleEmailChange = (e) => setEmail(e.target.value);
 
@@ -160,6 +156,10 @@ const handleSignup=(values)=>{
           Already have an account?{" "}
           <Link onClick={() => props.handleLoginPage()}>Sign in </Link>
         </p>
+        <Link to="photographer/signup"><small>
+         Sign Up as A photographer{" "}
+         
+        </small></Link>
       </form>
       <AlertDialog open={ErrorMessage} onClose={handleClose}>
       {ErrorMessage}

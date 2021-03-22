@@ -3,13 +3,13 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import Sliders from "../../components/Sliders";
+// import Sliders from "../../components/Sliders";
 import { Scripts } from "../../script";
 
 const Homepage = () => {
   useEffect(() => {
     const loadScript = async () => {
-      await Scripts.forEach((item) => {
+      await Scripts.forEach(async (item) => {
         const script = document.createElement("script");
         script.src = item.src;
         script.async = true;
@@ -17,7 +17,7 @@ const Homepage = () => {
       });
     };
     loadScript();
-  });
+  },[]);
   return (
     <div>
       <Header/>

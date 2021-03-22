@@ -25,3 +25,15 @@ export const GETUSERNOTESSUCCESS = (userNotes) => {
 		payload: userNotes,
 	}
 }
+export const GETPHOTOGRAPHERSSUCCESS = (data) => {
+	return {
+		type: acttiontypes.GETPHOTOGRAPHERSSUCCESS,
+		payload: data,
+	}
+}
+export const SETMYLOCATION = (data) => {
+	return {
+		type: acttiontypes.SETMYLOCATION,
+		payload: data,
+	}
+}

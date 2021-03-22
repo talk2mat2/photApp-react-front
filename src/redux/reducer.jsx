@@ -28,3 +28,21 @@ export const NotesReducer = (state = notes_initstate, action) => {
     return state;
   }
 };
+
+const PHOTOGRAPHERS_initstate = [];
+export const photgraphersReducer = (state = PHOTOGRAPHERS_initstate, action) => {
+  if (action.type === Action_types.GETPHOTOGRAPHERSSUCCESS) {
+    return [...action.payload];
+  } else {
+    return state;
+  }
+};
+const Mylocation_initstate = {};
+export const MyLocationReducer = (state = Mylocation_initstate, action) => {
+  if (action.type === Action_types.SETMYLOCATION) {
+    return {...action.payload};
+  } else {
+    return state;
+  }
+};
+

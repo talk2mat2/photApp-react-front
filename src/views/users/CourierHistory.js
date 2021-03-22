@@ -50,7 +50,7 @@ function createData(name, code, population, size) {
 }
 
 const rows = [
-	createData('India', 'IN', 1324171354, 3287263),
+	createData('mIndia', 'IN', 1324171354, 3287263),
 	createData('China', 'CN', 1403500365, 9596961),
 	createData('Italy', 'IT', 60483973, 301340),
 	createData('United States', 'US', 327167434, 9833520),
@@ -109,17 +109,17 @@ export default function CourierHistory() {
 
 	return (
 		<>
-			<Card className={classes.root}>
+			{/* <Card className={classes.root}>
 				<CardContent>
 					<Typography
 						className={classes.title}
 						color='textSecondary'
 						variant='h3'
 					>
-						My Courier History
+						My Photo Session History
 					</Typography>
 				</CardContent>
-			</Card>
+			</Card> */}
 			<Paper className={classes.root}>
 				<TableContainer className={classes.container}>
 					<Table stickyHeader aria-label='sticky table'>

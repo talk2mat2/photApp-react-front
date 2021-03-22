@@ -119,19 +119,20 @@ const handleSignup=(values)=>{
       <form onSubmit={handleSubmit}>
         <div className="sign-up-heading">
           <h4 className="headings">
-            <Link href="#sign-up" className="su" id="sup" onclick="signUp()">
-              {" "}
-              photoSIGN UP{" "}
+            <Link href="#sign-up" className="su" id="sup" >
+            
+              SIGN UP
             </Link>
           </h4>
           <h4 className="heading">
-            <Link onClick={() => props.handleLoginPage()} id="log" onclick="login()">
+            <Link onClick={() => props.handleLoginPage()} id="log" >
               {" "}
-              phorologinLOGIN
+              LOGIN
             </Link>{" "}
           </h4>
           {loading? <CircularProgress size={24} style={{fontSize:20,color:"white",position:"absolute",zIndex:3,marginLeft:"auto",marginRight:"auto",top:4}} />:null}
         </div>
+        <div style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'center'}}>    <small >Photographers Sign Up</small></div>
         <input
           onChange={handleFnameChange}
           value={fname}

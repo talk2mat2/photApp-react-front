@@ -9,6 +9,8 @@ import { signOut } from '../actions/authactions'
 import { LOGINOUTUSER } from '../redux/action'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
+import Styled from 'styled-components'
+import MenuIcon from '@material-ui/icons/Menu'
 
 const drawerWidth = 240
 
@@ -40,9 +42,21 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(3),
+		padding: theme.spacing(1),
 	},
 }))
+
+const MenuIconDiv = Styled.div`
+
+position:fixed;
+top:7px;
+left:7px;
+z-index:1000000000;
+@media (min-width: 600px) {
+   display:none;
+  }
+
+`
 
 function ResponsiveDrawer(props) {
 	const { container } = props
@@ -50,6 +64,7 @@ function ResponsiveDrawer(props) {
 	const classes = useStyles()
 	const theme = useTheme()
 	const [mobileOpen, setMobileOpen] = React.useState(true)
+	const [isOpen, setisOpen] = React.useState(false)
 	const CurrentUser = useSelector((state) => state.user.currentUser)
 	const userData = CurrentUser && CurrentUser.userData
 	const token = CurrentUser && CurrentUser.token
@@ -218,11 +233,25 @@ function ResponsiveDrawer(props) {
 			</AppBar> */}
 			<nav className={classes.drawer} aria-label='mailbox folders'>
 				{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+				<MenuIconDiv
+					// onClick={setisOpen.bind(this, !isOpen)}
+					onClick={handleDrawerToggle}
+				>
+					{' '}
+					<MenuIcon
+						fontSize='medium'
+						style={{
+							color: 'rgb(190, 10, 10)',
+							fontSize: '28px',
+						}}
+					/>
+				</MenuIconDiv>
 				<Hidden smUp implementation='css'>
 					<Drawer
 						container={container}
 						variant='temporary'
 						anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+						// open={isOpen}
 						open={mobileOpen}
 						onClose={handleDrawerToggle}
 						classes={{
@@ -232,7 +261,7 @@ function ResponsiveDrawer(props) {
 							keepMounted: true, // Better open performance on mobile.
 						}}
 					>
-						<AppMenu />
+						<AppMenu handleDrawerToggle={handleDrawerToggle} />
 					</Drawer>
 				</Hidden>
 				<Hidden xsDown implementation='css'>
@@ -243,12 +272,13 @@ function ResponsiveDrawer(props) {
 						variant='permanent'
 						open
 					>
-						<AppMenu />
+						<AppMenu handleDrawerToggle={handleDrawerToggle} />
 					</Drawer>
 				</Hidden>
 			</nav>
+
 			<main className={classes.content}>
-				<div className={classes.toolbar} />
+				{/* <div className={classes.toolbar} /> */}
 				{props.children}
 			</main>
 		</div>

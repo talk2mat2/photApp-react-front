@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
+import { useSelector } from 'react-redux'
 import { compose } from 'recompose'
 import {
 	withScriptjs,
@@ -19,11 +20,20 @@ const MapWithAMarker = compose(
 	withScriptjs,
 	withGoogleMap
 )((props) => {
-	useEffect(() => {
-		console.log(props.drivers)
-	})
+	// const sessionVenue = useSelector((state) => state.sessionVenue)
+
+	// useEffect(() => {
+	// 	console.log('venue is', sessionVenue)
+	// }, [])
 	return (
-		<GoogleMap defaultZoom={12} defaultCenter={props.selectedMarker.locations}>
+		<GoogleMap
+			defaultZoom={12}
+			defaultCenter={
+				props.sessionVenue.lat
+					? props.sessionVenue
+					: props.selectedMarker.locations
+			}
+		>
 			{/* {props.markers &&
 				props.markers.map((marker, index) => {
 					return (
@@ -43,12 +53,12 @@ const MapWithAMarker = compose(
 					)
 				})} */}
 
-			{props.sessionVenue && (
+			{props.sessionVenue.locations && (
 				<Marker
 					// onClick=
 					position={{
-						lat: props.sessionVenue.locations.lat,
-						lng: props.sessionVenue.locations.lng,
+						lat: 3.3374639999999998,
+						lng: 6.5997214,
 					}}
 					color='blue'
 					label='Me'
@@ -70,13 +80,29 @@ const MapWithAMarker = compose(
 						<>
 							{' '}
 							<PhotoCameraIcon />
-							<p>{item.name}</p>
+							<small>{item.fname}</small>
+							<br />
+							<small>
+								{typeof item.distance !== 'undefined'
+									? (item.distance / 1000).toFixed(1)
+									: 0}
+								km
+							</small>
 						</>
 					</InfoWindow>
 				</Marker>
 			))}
 
-			{/* <Marker position={{ lat: 6.6138, lng: 3.358 }} color='blue' label='S' /> */}
+			{props.sessionVenue.lat ? (
+				<Marker
+					position={{
+						lat: props.sessionVenue.lat,
+						lng: props.sessionVenue.lng,
+					}}
+					color='blue'
+					label='me'
+				/>
+			) : null}
 		</GoogleMap>
 	)
 })
