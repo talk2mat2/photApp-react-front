@@ -12,6 +12,7 @@ import BaseRoute from "./components/BaseRoute";
 // import Contact from "./views/pages/ContactPage";
 // import { Scripts } from "./script";
 
+
 function App() {
 
   return (

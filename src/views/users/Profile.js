@@ -109,7 +109,7 @@ margin-top:8px;
 						</Grid>
 					</Grid>
 				</Grid>
-				<Grid container spacing={2} alignItems='flex-end'>
+				{/* <Grid container spacing={2} alignItems='flex-end'>
 					<Grid item>
 						<PersonPinCircle />
 					</Grid>
@@ -138,7 +138,7 @@ margin-top:8px;
 							</Select>
 						</FormControl>
 					</Grid>
-				</Grid>
+				</Grid> */}
 
 				<Grid container spacing={2} alignItems='flex-end'>
 					<Grid item>
@@ -146,7 +146,9 @@ margin-top:8px;
 					</Grid>
 					<Grid item xs={12} sm container>
 						<FormControl className={classes.formControl}>
-							<InputLabel id='demo-simple-select-label'>Location</InputLabel>
+							<InputLabel id='demo-simple-select-label'>
+								my saved Location
+							</InputLabel>
 							<Select
 								labelId='demo-simple-select-label'
 								id='demo-simple-select'
@@ -174,7 +176,7 @@ margin-top:8px;
 						/> */}
 					</Grid>
 				</Grid>
-				<Grid container spacing={2} alignItems='flex-end'>
+				{/* <Grid container spacing={2} alignItems='flex-end'>
 					<Grid item>
 						<LocationCityRounded />
 					</Grid>
@@ -191,7 +193,7 @@ margin-top:8px;
 							</Select>
 						</FormControl>
 					</Grid>
-				</Grid>
+				</Grid> */}
 				<Buttons
 					style={{ ...ButtonsStyle, minWidth: '100px' }}
 					variant='outlined'

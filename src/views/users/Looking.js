@@ -103,6 +103,20 @@ animation-iteration-count: 1;
     }
   }
 `
+const Listing = Styled.ul`
+margin-top:20px;
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+padding:0px;
+width:95%;
+padding-top:40px;
+li{
+	list-style:none;
+	font-size:18px;
+	color:grey;
+}
+`
 const MidText = Styled.p`
   font-size: 13px;
   color: grey;
@@ -139,6 +153,34 @@ justify-content:center;
 	margin-right:20px;
 }
 `
+const BigText = Styled.p`
+font-size:20px;
+color:grey;
+font-weight:500;
+`
+const PhotoGrapherDetails = styled.div`
+	width: 70%;
+	position: absolute;
+	border-radius: 3px;
+	min-height: 500px;
+	background-color: white;
+	padding: 10px;
+	box-sizing: border-box;
+	right: 0;
+	top: 7px;
+	animation: apper 2s ease;
+	animation-iteration-count: 1;
+
+	@keyframes apper {
+		from {
+			opacity: 0;
+			transform: translateX(-100px);
+		}
+		to {
+			opacity: 1;
+		}
+	}
+`
 const ButtonsStyle = {
 	width: '200px',
 	alignSelf: 'center',
@@ -150,6 +192,8 @@ const Looking = () => {
 	const [locations, setLocations] = useState([])
 	const [CardVisible, setCardVisible] = useState(true)
 	const [Searching, setSearching] = useState(false)
+	const [PhotoDetails, setPhotoDetails] = useState(false)
+	const [PhotoInfo, setPhotoInfo] = useState(null)
 	const [from, setFrom] = useState('')
 	const [to, setTo] = useState('')
 	const [address1, setAddress1] = useState('')
@@ -227,33 +271,31 @@ const Looking = () => {
 		})
 		setFilteredToCities(newfilteredToCities.slice(0, 10))
 	}
-
-	const handleFromClick = (long, lat, name) => {
-		return function () {
-			setLocations([
-				{
-					name: name,
-					locations: {
-						lat: parseFloat(lat),
-						lng: parseFloat(long),
-					},
-				},
-			])
-			// history.push
-			setUi1(!ui1)
-			setAddress1(name)
-			console.log(mylocation)
-			window.history.replaceState(
-				null,
-				null,
-				'?pickup=' +
-					encodeURIComponent(
-						'{' + name + ',"latitude":' + lat + ',"longitude":' + long + '}'
-					)
-			)
+	const handleBooking = async (_id) => {
+		//_id is photographers id
+		setConfirmAgreeVisible(false)
+		setPhotoDetails(false)
+		if (!_id) {
+			return null
 		}
+		// /bookSession
+		await axios
+			.post(
+				`${process.env.REACT_APP_API_URL}/users/bookSession`,
+				{ phographerId: _id },
+				{ headers: { authorization: token } }
+			)
+			.then((res) => {
+				console.log(res.data)
+			})
+			.catch((err) => {
+				if (err.response) {
+					console.log(err.response.data.message)
+				}
+				console.log(err)
+			})
+		//api post request to book appointment with drivers id
 	}
-
 	const handleSearchPhotoGrphers = async (values) => {
 		setSearching(true)
 		await axios
@@ -341,6 +383,13 @@ const Looking = () => {
 	// ]
 	const photographers = useSelector((state) => state.photographers)
 	const classes = useStyles()
+	const MatchPhotographer = () => {
+		const CloserPhotoGrapher = photographers.reduce(function (prev, curr) {
+			return prev.distance < curr.distance ? prev : curr
+		})
+		setPhotoInfo(CloserPhotoGrapher)
+		console.log(CloserPhotoGrapher)
+	}
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column' }}>
 			{CardVisible ? (
@@ -390,9 +439,10 @@ const Looking = () => {
 						<TextField
 							className='standard-basic'
 							onChange={handleToChange}
-							label='Add a pick-up location'
+							label='Add a venue'
 							name='search_to'
 							value={to}
+							style={{ maxWidth: '85%' }}
 						/>
 					</form>
 					<MenuList
@@ -473,7 +523,40 @@ const Looking = () => {
 					{languageJson.allow_location}
 				</Typography>
 			)}
-
+			{PhotoDetails ? (
+				<PhotoGrapherDetails>
+					<BigText>photographer/ videographer</BigText>
+					<Listing>
+						{PhotoInfo && (
+							<>
+								<MidText>name:{PhotoInfo.fname}</MidText>
+								<MidText>phone:{PhotoInfo.mobile}</MidText>
+								<MidText>
+									distance : around{' '}
+									{PhotoInfo.mobile && (PhotoInfo.distance / 1000).toFixed(1)}{' '}
+									km
+								</MidText>
+								<MidText>email:{PhotoInfo.Email}</MidText>
+								<MidText>address:</MidText>
+								<MidText>location:</MidText>
+								<li>
+									{' '}
+									<Buttons
+										style={{ ...ButtonsStyle, minWidth: '60px' }}
+										variant='outlined'
+										color='secondary'
+										onClick={() => {
+											handleBooking(PhotoInfo._id)
+										}}
+									>
+										<small> Book Now</small>
+									</Buttons>
+								</li>
+							</>
+						)}
+					</Listing>
+				</PhotoGrapherDetails>
+			) : null}
 			{ConfirmAgreeVisible ? (
 				<ConfirmAgree>
 					<PriceSection>
@@ -493,6 +576,11 @@ const Looking = () => {
 						style={{ ...ButtonsStyle, minWidth: '100px' }}
 						variant='outlined'
 						color='secondary'
+						onClick={() => {
+							MatchPhotographer()
+							setPhotoDetails(true)
+							setConfirmAgreeVisible(false)
+						}}
 					>
 						<small> Confirm Photo Express</small>
 					</Buttons>

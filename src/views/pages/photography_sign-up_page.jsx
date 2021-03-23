@@ -49,7 +49,7 @@ const PhotographysignUppage = (props) => {
 							lng: position.coords.longitude,
 					
 					})
-					alert(position.coords.latitude)
+					// alert(position.coords.latitude)
 				},
 				(err) => console.log(err),
 				option

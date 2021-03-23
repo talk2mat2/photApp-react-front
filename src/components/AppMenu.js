@@ -6,6 +6,7 @@ import {
 	MenuList,
 	MenuItem,
 } from '@material-ui/core'
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -165,20 +166,22 @@ function AppMenu(props) {
 					</ListItemIcon>
 					<Typography variant='inherit'>{languageJson.order_food}</Typography>
 				</MenuItem> */}
-				<MenuItem
-					className={(classes.menuItem, active === 'eats' && classes.active)}
-					onClick={() => {
-						props.handleDrawerToggle()
-						handleActive('eats')
-					}}
-					component={Link}
-					to='/eats'
-				>
-					<ListItemIcon>
-						<Restaurant />
-					</ListItemIcon>
-					<Typography variant='inherit'>Sessions History</Typography>
-				</MenuItem>
+				{!userData.isPhotographer ? (
+					<MenuItem
+						className={(classes.menuItem, active === 'eats' && classes.active)}
+						onClick={() => {
+							props.handleDrawerToggle()
+							handleActive('eats')
+						}}
+						component={Link}
+						to='/eats'
+					>
+						<ListItemIcon>
+							<PhotoCameraIcon />
+						</ListItemIcon>
+						<Typography variant='inherit'>Sessions History</Typography>
+					</MenuItem>
+				) : null}
 				{/* <MenuItem
 					className={
 						(classes.menuItem, active === 'delivery' && classes.active)
@@ -207,20 +210,24 @@ function AppMenu(props) {
 						{languageJson.delivery_history}
 					</Typography>
 				</MenuItem> */}
-				<MenuItem
-					className={(classes.menuItem, active === 'wallet' && classes.active)}
-					onClick={() => {
-						props.handleDrawerToggle()
-						handleActive('wallet')
-					}}
-					component={Link}
-					to='/wallet'
-				>
-					<ListItemIcon>
-						<AccountBalanceWalletOutlined />
-					</ListItemIcon>
-					<Typography variant='inherit'>{languageJson.wallet}</Typography>
-				</MenuItem>
+				{!userData.isPhotographer ? (
+					<MenuItem
+						className={
+							(classes.menuItem, active === 'wallet' && classes.active)
+						}
+						onClick={() => {
+							props.handleDrawerToggle()
+							handleActive('wallet')
+						}}
+						component={Link}
+						to='/wallet'
+					>
+						<ListItemIcon>
+							<AccountBalanceWalletOutlined />
+						</ListItemIcon>
+						<Typography variant='inherit'>{languageJson.wallet}</Typography>
+					</MenuItem>
+				) : null}
 
 				<MenuItem
 					className={(classes.menuItem, active === 'promos' && classes.active)}

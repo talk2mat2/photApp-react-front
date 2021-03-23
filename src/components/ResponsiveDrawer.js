@@ -49,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
 const MenuIconDiv = Styled.div`
 
 position:fixed;
-top:7px;
-left:7px;
+top:10px;
+left:10px;
 z-index:1000000000;
 @media (min-width: 600px) {
    display:none;
@@ -98,7 +98,6 @@ function ResponsiveDrawer(props) {
 	}, [])
 	useEffect(() => {
 		const updateMyLocation = (values) => {
-			alert('called')
 			axios
 				.post(
 					`${process.env.REACT_APP_API_URL}/photographer/updateMyLocation`,
@@ -242,7 +241,7 @@ function ResponsiveDrawer(props) {
 						fontSize='medium'
 						style={{
 							color: 'rgb(190, 10, 10)',
-							fontSize: '28px',
+							fontSize: '32px',
 						}}
 					/>
 				</MenuIconDiv>

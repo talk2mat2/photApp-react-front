@@ -8,9 +8,13 @@ import {
 	GoogleMap,
 	Marker,
 	InfoWindow,
+	Polygon,
 } from 'react-google-maps'
 import CameraIcon from '../assets/cameraIcon.png'
-
+const triangleCoords = [
+	{ lng: 3.3374639999999998, lat: 6.5997214 },
+	{ lng: 3.4374639999999998, lat: 6.2997214 },
+]
 const baseIcon = 'https://i.imgur.com/u5Wy1dx.png'
 const iconBase =
 	'https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png'
@@ -21,10 +25,17 @@ const MapWithAMarker = compose(
 	withGoogleMap
 )((props) => {
 	// const sessionVenue = useSelector((state) => state.sessionVenue)
-
-	// useEffect(() => {
-	// 	console.log('venue is', sessionVenue)
-	// }, [])
+	const refs = {}
+	const [state, setState] = useState({ bounds: null })
+	const CloserPhotoGrapher = (photographers) => {
+		const CloserPhotoGrapher = photographers.reduce(function (prev, curr) {
+			return prev.distance < curr.distance ? prev : curr
+		})
+		return CloserPhotoGrapher
+	}
+	const onMapMounted = (ref) => {
+		refs.map = ref
+	}
 	return (
 		<GoogleMap
 			defaultZoom={12}
@@ -53,22 +64,6 @@ const MapWithAMarker = compose(
 					)
 				})} */}
 
-			{props.sessionVenue.locations && (
-				<Marker
-					// onClick=
-					position={{
-						lat: 3.3374639999999998,
-						lng: 6.5997214,
-					}}
-					color='blue'
-					label='Me'
-					// icon={baseIcon}
-				>
-					{/* <InfoWindow>
-						<div>{props.selectedMarker.name}</div>
-					</InfoWindow> */}
-				</Marker>
-			)}
 			{props.photographers.map((item) => (
 				<Marker
 					position={{ lat: item.lat, lng: item.lng }}
@@ -78,11 +73,9 @@ const MapWithAMarker = compose(
 				>
 					<InfoWindow>
 						<>
-							{' '}
-							<PhotoCameraIcon />
 							<small>{item.fname}</small>
-							<br />
 							<small>
+								<br />
 								{typeof item.distance !== 'undefined'
 									? (item.distance / 1000).toFixed(1)
 									: 0}
@@ -92,7 +85,20 @@ const MapWithAMarker = compose(
 					</InfoWindow>
 				</Marker>
 			))}
-
+			{props.sessionVenue && props.photographers.length > 0 && (
+				<Polygon
+					path={[props.sessionVenue, CloserPhotoGrapher(props.photographers)]}
+					key={1}
+					editable={true}
+					options={{
+						strokeColor: '#FF0000',
+						strokeOpacity: 0.8,
+						strokeWeight: 2,
+						fillColor: '#FF0000',
+						fillOpacity: 0.35,
+					}}
+				/>
+			)}
 			{props.sessionVenue.lat ? (
 				<Marker
 					position={{
