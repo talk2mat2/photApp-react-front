@@ -1,6 +1,7 @@
 import React from 'react'
 import Styled from 'styled-components'
 import Button from '@material-ui/core/Button'
+import { useSelector } from 'react-redux'
 const Container = Styled.div`
 width:100%;
 display:flex;
@@ -48,12 +49,14 @@ const ButtonsStyle = {
 	marginLeft: '80px',
 }
 const Wallet = () => {
+	const CurrentUser = useSelector((state) => state.user.currentUser)
+	const userData = CurrentUser && CurrentUser.userData
 	return (
 		<Container>
 			<BigText>Wallet Page</BigText>
 			<Listing>
 				<li>
-					PhotoCredits: <b>NGN 0.00 Ballance</b>
+					PhotoCredits: <b>NGN {userData.wallet} Ballance</b>
 				</li>
 
 				<li>

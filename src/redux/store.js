@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { createStore, combineReducers } from "redux";
-import { UserReducers, NotesReducer ,photgraphersReducer,MyLocationReducer} from "./reducer";
+import { UserReducers, NotesReducer ,photgraphersReducer,MyLocationReducer,BookingsReducer} from "./reducer";
 import { persistStore, persistReducer } from "redux-persist";
 
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for our  web app
@@ -10,6 +10,7 @@ const rootReducer = combineReducers({
   notes: NotesReducer,
  photographers: photgraphersReducer,
  sessionVenue:MyLocationReducer,
+ bookings:BookingsReducer
 });
 const authPersistConfig = {
   key: "root",

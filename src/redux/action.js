@@ -12,7 +12,6 @@ export const LOGINOUTUSER = () => {
 	}
 }
 export const SYNCUSERDATA = (userData) => {
-	console.log('called me')
 	return {
 		type: acttiontypes.SYNCUSERDATA,
 		payload: userData,
@@ -34,6 +33,12 @@ export const GETPHOTOGRAPHERSSUCCESS = (data) => {
 export const SETMYLOCATION = (data) => {
 	return {
 		type: acttiontypes.SETMYLOCATION,
+		payload: data,
+	}
+}
+export const GETMYBOOKINGSUCCESS = (data) => {
+	return {
+		type: acttiontypes.GETMYBOOKINGSUCCESS,
 		payload: data,
 	}
 }

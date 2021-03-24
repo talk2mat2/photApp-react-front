@@ -11,7 +11,7 @@ import BaseRoute from "./components/BaseRoute";
 // import SignUp from "./views/pages/Signup";
 // import Contact from "./views/pages/ContactPage";
 // import { Scripts } from "./script";
-
+// import './style.css'
 
 function App() {
 

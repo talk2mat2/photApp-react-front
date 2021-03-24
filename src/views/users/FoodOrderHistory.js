@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Styled from 'styled-components'
 import Button from '@material-ui/core/Button'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 const Container = Styled.div`
 width:100%;
 display:flex;
@@ -25,12 +27,17 @@ margin-top:20px;
 display:flex;
 flex-direction:column;
 align-items:flex-start;
+background-color: #f1f0f0;
 padding:0px;
 width:95%;
 li{
 	list-style:none;
 	font-size:18px;
+	width:100%;
+	background-color: #ffff;
 	color:grey;
+	margin-top:1.7px;
+	margin-bottom:1.7px;
 }
 `
 const Buttons = Styled(Button)`
@@ -53,15 +60,66 @@ const ButtonsStyle = {
 	marginLeft: '80px',
 }
 const FoodOrderHistory = () => {
+	const [bookings, setBookings] = useState([])
+	const CurrentUser = useSelector((state) => state.user.currentUser)
+	const token = CurrentUser && CurrentUser.token
+	// getSesssionHistory
+	const getSesssionHistory = async () => {
+		await axios
+			.get(
+				`${process.env.REACT_APP_API_URL}/users/getSesssionHistory`,
+
+				{
+					headers: { authorization: token },
+				}
+			)
+			.then((res) => {
+				console.log(res.data)
+				// setBookinmgs(res.data.userData)
+				setBookings(res.data.userData)
+				// setIsregistered(true)
+				// history.push('/dashboard')
+			})
+			.catch((err) => {
+				if (err.response) {
+					console.log(err.response.data.message)
+					// err.response.data.message &&
+
+					// err.response.data.error && setIsregistered(false)
+				}
+				console.log(err)
+			})
+	}
+
+	useEffect(() => {
+		getSesssionHistory()
+	}, [])
+	const BookingCards = ({ item }) => {
+		return (
+			<>
+				<li>
+					<small>
+						request status: {!item.accepted ? 'pending' : 'accepted'}
+					</small>
+					<br />
+					<small>Date : {item.bookingDate.substring(0, 10)}</small>
+				</li>
+			</>
+		)
+	}
+	const MapBookings = () => {
+		return (
+			bookings.length > 0 &&
+			bookings.map((item) => {
+				return <BookingCards item={item} />
+			})
+		)
+	}
 	return (
 		<Container>
-			<BigText>My Photo Sessions History</BigText>
+			<BigText>My booking History</BigText>
 			<Listing>
-				<li>
-					<div>
-						<Smalltext>date</Smalltext>
-					</div>
-				</li>
+				{bookings.length > 0 ? MapBookings() : <small>empty</small>}
 			</Listing>
 		</Container>
 	)

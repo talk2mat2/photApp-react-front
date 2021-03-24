@@ -10,9 +10,10 @@ export const UserReducers = (state = init_state, action) => {
       return { ...state, currentUser: null };
     }
     if (action.type === Action_types.SYNCUSERDATA) {
+
       return {
         ...state,
-        currentUser: { ...state.currentUser, userdata: action.payload },
+        currentUser: { ...state.currentUser, userData: action.payload },
       };
     } else {
       return state;
@@ -41,6 +42,14 @@ const Mylocation_initstate = {};
 export const MyLocationReducer = (state = Mylocation_initstate, action) => {
   if (action.type === Action_types.SETMYLOCATION) {
     return {...action.payload};
+  } else {
+    return state;
+  }
+};
+const Bookings_initstate =[];
+export const BookingsReducer = (state =Bookings_initstate, action) => {
+  if (action.type === Action_types.GETMYBOOKINGSUCCESS) {
+    return [...action.payload];
   } else {
     return state;
   }

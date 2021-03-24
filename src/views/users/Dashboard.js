@@ -26,7 +26,7 @@ const Dashboard = () => {
 		}
 		document.title = 'Dashboard'
 	}, [mylocation])
-	console.log(mylocation)
+	// console.log(mylocation)
 	return (
 		<div>
 			{mylocation ? (

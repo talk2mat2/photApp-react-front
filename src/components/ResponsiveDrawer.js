@@ -6,7 +6,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import AppMenu from '../components/AppMenu'
 import { useDispatch } from 'react-redux'
 import { signOut } from '../actions/authactions'
-import { LOGINOUTUSER } from '../redux/action'
+import { LOGINOUTUSER, SYNCUSERDATA } from '../redux/action'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import Styled from 'styled-components'
@@ -109,6 +109,7 @@ function ResponsiveDrawer(props) {
 				.then((res) => {
 					console.log(res.data)
 					// setIsregistered(true)
+					dispatch(SYNCUSERDATA(res.data.userData))
 					// history.push('/dashboard')
 				})
 				.catch((err) => {
@@ -121,10 +122,26 @@ function ResponsiveDrawer(props) {
 					console.log(err)
 				})
 		}
+		const updateClient = () => {
+			axios
+				.get(`${process.env.REACT_APP_API_URL}/users/updateClient`, {
+					headers: { authorization: token },
+				})
+				.then((res) => {
+					console.log(res.data)
+					dispatch(SYNCUSERDATA(res.data.userData))
+				})
+				.catch((err) => {
+					if (err.response) {
+						console.log(err.response.data.message)
+					}
+					console.log(err)
+				})
+		}
 
-		mylocation &&
-			userData.isPhotographer &&
-			updateMyLocation({ lat: mylocation.lat, lng: mylocation.lng })
+		mylocation && userData.isPhotographer
+			? updateMyLocation({ lat: mylocation.lat, lng: mylocation.lng })
+			: updateClient()
 	}, [mylocation])
 	return (
 		<div className={classes.root}>
