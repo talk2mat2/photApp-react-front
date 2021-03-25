@@ -58,6 +58,9 @@ li{
 	list-style:none;
 	font-size:18px;
 	width:100%;
+	padding-top:18px;
+	padding-bottom:18px;
+	box-sizing:border-box;
 	background-color: #ffff;
 	color:grey;
 	margin-top:1.7px;
@@ -216,11 +219,9 @@ const Detailevents = ({
 						<BigText>
 							{BookingDetail.bookedById.fname} {BookingDetail.bookedById.lname}
 						</BigText>
-					</li>
-					<li>
+						<br />
 						<small>location: google places location</small>
-					</li>
-					<li>
+						<br />
 						<small>price per min: price set by admin</small>
 					</li>
 				</Listing>
@@ -261,7 +262,10 @@ const Detailevents = ({
 					<BigText>
 						total duration :{BookingDetail.sessionDuration} minutes !
 					</BigText>
-					<BigText>Amount :</BigText>
+					<BigText>
+						Amount Charge:NGN
+						{BookingDetail.sessionDuration * BookingDetail.pricePerMinutes} :
+					</BigText>
 				</div>
 			) : null}
 		</>

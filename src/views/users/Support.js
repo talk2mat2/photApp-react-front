@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Styled from 'styled-components'
 import Button from '@material-ui/core/Button'
+import axios from 'axios'
+import { Switch, Route, Link, useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 const Container = Styled.div`
 width:100%;
 display:flex;
@@ -47,13 +51,103 @@ const ButtonsStyle = {
 	marginTop: '50px',
 	marginLeft: '80px',
 }
-const Support = () => {
+const DetailMessages = ({
+	location: {
+		state: { data },
+	},
+}) => {
+	let history = useHistory()
+	return (
+		<>
+			<div
+				onClick={history.goBack}
+				style={{
+					position: 'absolute',
+					left: '60px',
+					top: '40px',
+					cursor: 'pointer',
+				}}
+			>
+				<ArrowBackIcon style={{ fontSize: '30px' }} />
+			</div>
+			<BigText>{data.title}</BigText>
+			<Listing>
+				<li>
+					<small>{data.body}</small>
+				</li>
+			</Listing>
+		</>
+	)
+}
+const Support = (props) => {
+	const CurrentUser = useSelector((state) => state.user.currentUser)
+	const bookings = useSelector((state) => state.bookings)
+	const token = CurrentUser && CurrentUser.token
+	const [loading, setLoading] = useState()
+	const [MessageState, setMessageState] = useState({})
+	const { item, history, match } = props
+	const FetchMessages = async (id) => {
+		setLoading(true)
+		await axios
+			.get(
+				`${process.env.REACT_APP_API_URL}/users/FetchMessages`,
+
+				{
+					headers: { authorization: token },
+				}
+			)
+			.then((res) => {
+				console.log(res.data)
+				setMessageState(res.data.userData)
+			})
+			.catch((err) => {
+				if (err.response) {
+					console.log(err.response.data.message)
+				}
+				console.log(err)
+			})
+	}
+
+	const mapMessages = () => {
+		return (
+			MessageState.length > 0 &&
+			MessageState.map((item) => {
+				return (
+					<Link
+						to={{
+							pathname: `${match.url}/details`,
+							state: { data: item },
+						}}
+					>
+						<li style={{ textDecoration: 'underline' }}>
+							{item.title.slice(0, 29)}
+						</li>
+					</Link>
+				)
+			})
+		)
+	}
+	useEffect(() => {
+		FetchMessages()
+	}, [])
 	return (
 		<Container>
-			<BigText>Messages</BigText>
-			<Listing>
-				<li>No new messages availaible</li>
-			</Listing>
+			<Switch>
+				<Route exact path={match.url}>
+					<>
+						{' '}
+						<BigText>Messages</BigText>
+						<Listing>
+							{MessageState.length > 0 ? (
+								mapMessages()
+							) : (
+								<li>No new messages availaible</li>
+							)}
+						</Listing>
+					</>
+				</Route>
+				<Route path={`${match.url}/details`} component={DetailMessages} />
+			</Switch>
 		</Container>
 	)
 }

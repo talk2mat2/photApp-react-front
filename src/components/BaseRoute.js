@@ -40,8 +40,8 @@ function BaseRoute() {
         {/* <ProtectedRoute exact component={TransEat} path="/trans_eat" /> */}
         <ProtectedRoute  component={Trips} path="/trips" />
         <ProtectedRoute exact component={Wallet} path="/wallet" />
-        <ProtectedRoute exact component={Support} path="/support" />
-        <ProtectedRoute exact component={FoodOrderHistory} path="/eats" />
+        <ProtectedRoute component={Support} path="/support" />
+        <ProtectedRoute component={FoodOrderHistory} path="/eats" />
         <ProtectedRoute exact component={CourierHistory} path="/couriers" />
         <GuestRoute exact component={Homepage} path="/" />
         <GuestRoute exact component={About} path="/about" />

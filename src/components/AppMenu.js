@@ -94,7 +94,7 @@ function AppMenu(props) {
 			{/* <Divider /> */}
 
 			<MenuList>
-				{!userData.isPhotographer ? (
+				{!userData.isPhotographer && !userData.isAdmin ? (
 					<MenuItem
 						component={Link}
 						to='/looking'
@@ -153,20 +153,22 @@ function AppMenu(props) {
 						<Typography variant='inherit'>Bookings received</Typography>
 					</MenuItem>
 				) : null}
-				{/* <MenuItem
-					className={
-						(classes.menuItem, active === 'trans_eat' && classes.active)
-					}
-					onClick={handleActive('trans_eat')}
-					component={Link}
-					to='/trans_eat'
-				>
-					<ListItemIcon>
-						<Restaurant />
-					</ListItemIcon>
-					<Typography variant='inherit'>{languageJson.order_food}</Typography>
-				</MenuItem> */}
-				{!userData.isPhotographer ? (
+				{userData.isAdmin ? (
+					<MenuItem
+						className={
+							(classes.menuItem, active === 'trans_eat' && classes.active)
+						}
+						onClick={handleActive('trans_eat')}
+						component={Link}
+						to='/trans_eat'
+					>
+						<ListItemIcon>
+							<Restaurant />
+						</ListItemIcon>
+						<Typography variant='inherit'>Admin</Typography>
+					</MenuItem>
+				) : null}
+				{!userData.isPhotographer && !userData.isAdmin ? (
 					<MenuItem
 						className={(classes.menuItem, active === 'eats' && classes.active)}
 						onClick={() => {
@@ -210,7 +212,7 @@ function AppMenu(props) {
 						{languageJson.delivery_history}
 					</Typography>
 				</MenuItem> */}
-				{!userData.isPhotographer ? (
+				{!userData.isPhotographer && !userData.isAdmin ? (
 					<MenuItem
 						className={
 							(classes.menuItem, active === 'wallet' && classes.active)
@@ -229,36 +231,44 @@ function AppMenu(props) {
 					</MenuItem>
 				) : null}
 
-				<MenuItem
-					className={(classes.menuItem, active === 'promos' && classes.active)}
-					onClick={() => {
-						props.handleDrawerToggle()
-						handleActive('promos')
-					}}
-					component={Link}
-					to='/promos'
-				>
-					<ListItemIcon>
-						<OfferIcon />
-					</ListItemIcon>
-					<Typography variant='inherit'>{languageJson.promo}</Typography>
-				</MenuItem>
-				<MenuItem
-					className={(classes.menuItem, active === 'support' && classes.active)}
-					onClick={() => {
-						props.handleDrawerToggle()
-						handleActive('support')
-					}}
-					component={Link}
-					to='/support'
-				>
-					<ListItemIcon>
-						<HeadsetMic />
-					</ListItemIcon>
-					<Typography variant='inherit'>
-						{languageJson.support_messages}
-					</Typography>
-				</MenuItem>
+				{!userData.isAdmin ? (
+					<MenuItem
+						className={
+							(classes.menuItem, active === 'promos' && classes.active)
+						}
+						onClick={() => {
+							props.handleDrawerToggle()
+							handleActive('promos')
+						}}
+						component={Link}
+						to='/promos'
+					>
+						<ListItemIcon>
+							<OfferIcon />
+						</ListItemIcon>
+						<Typography variant='inherit'>{languageJson.promo}</Typography>
+					</MenuItem>
+				) : null}
+				{!userData.isAdmin ? (
+					<MenuItem
+						className={
+							(classes.menuItem, active === 'support' && classes.active)
+						}
+						onClick={() => {
+							props.handleDrawerToggle()
+							handleActive('support')
+						}}
+						component={Link}
+						to='/support'
+					>
+						<ListItemIcon>
+							<HeadsetMic />
+						</ListItemIcon>
+						<Typography variant='inherit'>
+							{languageJson.support_messages}
+						</Typography>
+					</MenuItem>
+				) : null}
 				<MenuItem
 					className={(classes.menuItem, active === 'profile' && classes.active)}
 					onClick={() => {

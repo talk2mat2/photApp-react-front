@@ -13,7 +13,7 @@ export const UserReducers = (state = init_state, action) => {
 
       return {
         ...state,
-        currentUser: { ...state.currentUser, userData: action.payload },
+        currentUser: { ...state.currentUser, userData: {...state.currentUser.userData,...action.payload} },
       };
     } else {
       return state;

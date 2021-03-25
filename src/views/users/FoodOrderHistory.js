@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Styled from 'styled-components'
 import Button from '@material-ui/core/Button'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import { GETMYBOOKINGSUCCESS } from '../../redux/action'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+import Moment from 'react-moment'
+import { useSelector, useDispatch } from 'react-redux'
+import { Switch, Route, Link, useHistory } from 'react-router-dom'
 const Container = Styled.div`
 width:100%;
 display:flex;
@@ -55,12 +59,80 @@ margin-top:8px;
     // }
   }
 `
-const ButtonsStyle = {
-	marginTop: '50px',
-	marginLeft: '80px',
+// const ButtonsStyle = {
+// 	marginTop: '50px',
+// 	marginLeft: '80px',
+// }
+const Detailevents = ({
+	location: {
+		state: { data },
+	},
+}) => {
+	const [BookingDetail, setBookingDetail] = useState({})
+
+	let history = useHistory()
+	let bookings = useSelector((state) => state.bookings)
+	const [loading, setLoading] = useState(false)
+	useEffect(() => {
+		bookings.length &&
+			bookings.map((items) => {
+				// console.log(items)
+				return items._id === data._id && setBookingDetail(items)
+			})
+	}, [bookings, data._id])
+
+	return (
+		<>
+			<div
+				onClick={history.goBack}
+				style={{
+					position: 'absolute',
+					left: '60px',
+					top: '40px',
+					cursor: 'pointer',
+				}}
+			>
+				<ArrowBackIcon style={{ fontSize: '30px' }} />
+			</div>
+			<BigText>Details</BigText>
+			<Listing>
+				<li>
+					<small>Google placses Address</small>
+					<br />
+					{BookingDetail.timeStart && (
+						<>
+							{' '}
+							<small>
+								<Moment>{`${BookingDetail.timeStart}`}</Moment>
+							</small>
+							<br />
+						</>
+					)}
+
+					<small>
+						{BookingDetail.completed
+							? 'ended'
+							: null || BookingDetail.accepted
+							? 'processing'
+							: 'pending'}
+					</small>
+					<br />
+					<small>
+						Shots by{' '}
+						{BookingDetail.photographerId && BookingDetail.photographerId.fname}
+						:
+					</small>
+				</li>
+				<br />
+			</Listing>
+		</>
+	)
 }
-const FoodOrderHistory = () => {
+
+const FoodOrderHistory = (props) => {
+	const { match, history } = props
 	const [bookings, setBookings] = useState([])
+	const dispatch = useDispatch()
 	const CurrentUser = useSelector((state) => state.user.currentUser)
 	const token = CurrentUser && CurrentUser.token
 	// getSesssionHistory
@@ -77,6 +149,7 @@ const FoodOrderHistory = () => {
 				console.log(res.data)
 				// setBookinmgs(res.data.userData)
 				setBookings(res.data.userData)
+				dispatch(GETMYBOOKINGSUCCESS(res.data.userData))
 				// setIsregistered(true)
 				// history.push('/dashboard')
 			})
@@ -97,7 +170,14 @@ const FoodOrderHistory = () => {
 	const BookingCards = ({ item }) => {
 		return (
 			<>
-				<li>
+				<li
+					onClick={() =>
+						history.push({
+							pathname: `${match.url}/info`,
+							state: { data: item },
+						})
+					}
+				>
 					<small>
 						request status: {!item.accepted ? 'pending' : 'accepted'}
 					</small>
@@ -117,10 +197,18 @@ const FoodOrderHistory = () => {
 	}
 	return (
 		<Container>
-			<BigText>My booking History</BigText>
-			<Listing>
-				{bookings.length > 0 ? MapBookings() : <small>empty</small>}
-			</Listing>
+			<Switch>
+				<Route exact path={match.url}>
+					<>
+						<BigText>My booking History</BigText>
+						<Listing>
+							{bookings.length > 0 ? MapBookings() : <small>empty</small>}
+						</Listing>
+					</>
+				</Route>
+
+				<Route path={`${match.url}/info`} component={Detailevents} />
+			</Switch>
 		</Container>
 	)
 }
