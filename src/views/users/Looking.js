@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card'
 import styled from 'styled-components'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios'
+import Autocomplete from 'react-google-autocomplete'
 import { useDispatch, useSelector } from 'react-redux'
 import CardActions from '@material-ui/core/CardActions'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
@@ -282,11 +283,12 @@ const Looking = () => {
 		await axios
 			.post(
 				`${process.env.REACT_APP_API_URL}/users/bookSession`,
-				{ phographerId: _id },
+				{ phographerId: _id, address: sessionVenue.name },
 				{ headers: { authorization: token } }
 			)
 			.then((res) => {
 				console.log(res.data)
+				alert('request sent')
 			})
 			.catch((err) => {
 				if (err.response) {
@@ -324,50 +326,21 @@ const Looking = () => {
 				console.log(err)
 			})
 	}
-	const handleToClick = (long1, lat1, name) => {
-		// console.log(long, lat)
+	const handleToClick = (long1, lat1, address) => {
 		// console.log(typeof long)
 		let lng = parseFloat(long1)
 		let lat = parseFloat(lat1)
-		return function () {
-			// setLocations([
-			// 	{
-			// 		name: name,
-			// 		locations: {
-			// 			lat: parseFloat(lat),
-			// 			lng: parseFloat(long),
-			// 		},
-			// 	},
-			// ])
-			//here we make a request to the back end to get
-			// lat and long of users not far from our lat long by posting our lat long to backend
-			setCardVisible(false)
-			console.log(mylocation)
-			// console.log(long, lat)
-			// setMylocation({
-			// 	name: 'My Location',
-			// 	locations: {
-			// 		lat: 6.6138,
-			// 		lng: 3.6138,
-			// 	},
-			// })
-			setsessionVenue({
-				name: 'My Location',
+		console.log(lng, lat)
+		setCardVisible(false)
+		setsessionVenue({
+			name: address,
 
-				lat: lat,
-				lng: lng,
-			})
-			// dispatch(
-			// 	SETMYLOCATION({
-			// 		name: 'My Location',
-
-			// 		lat: lat,
-			// 		lng: long,
-			// 	})
-			// )
-			handleSearchPhotoGrphers({ sesionlocation: { lat: lat, lng: lng } })
-			// setAddress2(name)
-		}
+			lat: lat,
+			lng: lng,
+		})
+		handleSearchPhotoGrphers({
+			sesionlocation: { lat: lat, lng: lng, address },
+		})
 	}
 	const handleClick = (marker, event) => {
 		// console.log({ marker })
@@ -383,6 +356,7 @@ const Looking = () => {
 	// ]
 	const photographers = useSelector((state) => state.photographers)
 	const classes = useStyles()
+	const [PriceTag, setPriceTag] = useState(null)
 	const MatchPhotographer = () => {
 		const CloserPhotoGrapher = photographers.reduce(function (prev, curr) {
 			return prev.distance < curr.distance ? prev : curr
@@ -390,6 +364,34 @@ const Looking = () => {
 		setPhotoInfo(CloserPhotoGrapher)
 		console.log(CloserPhotoGrapher)
 	}
+	const handleplaces = async (place) => {
+		// console.log(place.formatted_address)
+		// console.log(place.geometry.location.lat())
+		// console.log(place.geometry.location.lng())
+		const lng = await place.geometry.location.lng()
+		const lat = await place.geometry.location.lat()
+		const address = place.formatted_address
+		return await handleToClick(lng, lat, address)
+	}
+
+	const GetPricePriceTag = async () => {
+		await axios
+			.get(`${process.env.REACT_APP_API_URL}/users/GetPricePriceTag`)
+			.then((res) => {
+				console.log(res.data.userData.price)
+				setPriceTag(res.data.userData.price)
+			})
+			.catch((err) => {
+				if (err.response) {
+					console.log(err.response.data.message)
+				}
+				console.log(err)
+			})
+	}
+
+	useEffect(() => {
+		GetPricePriceTag()
+	}, [])
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column' }}>
 			{CardVisible ? (
@@ -405,7 +407,7 @@ const Looking = () => {
 								<Grid item container direction='column' spacing={2}>
 									<Grid item xs>
 										<Typography variant='h5'>Session Location?</Typography>
-										{mylocation ? (
+										{/* {mylocation ? (
 											<Link
 												onClick={handleToClick(
 													mylocation.locations.lng,
@@ -416,21 +418,13 @@ const Looking = () => {
 													Select my current location ?
 												</Typography>
 											</Link>
-										) : null}
-										<Button
-											// onClick={() => setUi1(!ui1)}
-											className={classes.selectDestBtn}
-											// color='light'
-										>
-											{address2}
-											{/* <ExpandMore /> */}
-										</Button>
+										) : null} */}
 									</Grid>
 								</Grid>
 							</Grid>
 						</Grid>
 					</CardContent>
-					<form
+					{/* <form
 						noValidate
 						onSubmit={handleSubmit}
 						autoComplete='off'
@@ -444,8 +438,8 @@ const Looking = () => {
 							value={to}
 							style={{ maxWidth: '85%' }}
 						/>
-					</form>
-					<MenuList
+					</form> */}
+					{/* <MenuList
 						component='nav'
 						aria-label='contacts'
 						style={{ height: '100vh', marginBottom: '10px', overflow: 'auto' }}
@@ -465,7 +459,20 @@ const Looking = () => {
 									<ListItemText primary={city.name} />
 								</MenuItem>
 							))}
-					</MenuList>
+					</MenuList> */}
+					<Autocomplete
+						placeholder='enter location'
+						apiKey={`${process.env.REACT_APP_API_KEY}`}
+						style={{
+							width: '300px',
+							color: 'grey',
+							borderWidth: '1px',
+							borderColor: 'silver',
+						}}
+						onPlaceSelected={(place) => handleplaces(place)}
+						types={['address']}
+						componentRestrictions={{ country: 'ng' }}
+					/>
 				</Card>
 			) : null}
 			{Searching ? (
@@ -509,7 +516,7 @@ const Looking = () => {
 						photographers={photographers}
 						markers={locations}
 						onClick={handleClick}
-						googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCJMOf24QZuH0yO64jYsiEC2s0eDLE7-ic&v=3.exp&libraries=geometry,drawing,places'
+						googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvhnz2J6HiUuHj41jc5wgT9xpAKZzgOk&v=3.exp&libraries=geometry,drawing,places'
 						loadingElement={<div style={{ height: `100%` }} />}
 						containerElement={<div style={{ height: '100%', flex: 1 }} />}
 						mapElement={<div style={{ height: `100%` }} />}
@@ -557,7 +564,7 @@ const Looking = () => {
 					</Listing>
 				</PhotoGrapherDetails>
 			) : null}
-			{ConfirmAgreeVisible ? (
+			{ConfirmAgreeVisible && PriceTag ? (
 				<ConfirmAgree>
 					<PriceSection>
 						<>
@@ -567,7 +574,7 @@ const Looking = () => {
 								alt='img'
 							/>
 
-							<small>price: N750-N830/min </small>
+							<small>price: NGA {PriceTag}/min </small>
 
 							<small>photo/video services</small>
 						</>

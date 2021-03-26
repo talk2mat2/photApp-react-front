@@ -220,9 +220,9 @@ const Detailevents = ({
 							{BookingDetail.bookedById.fname} {BookingDetail.bookedById.lname}
 						</BigText>
 						<br />
-						<small>location: google places location</small>
+						<small>location: {BookingDetail.address}</small>
 						<br />
-						<small>price per min: price set by admin</small>
+						<small>price per min: NGN {BookingDetail.pricePerMinutes}</small>
 					</li>
 				</Listing>
 			)}

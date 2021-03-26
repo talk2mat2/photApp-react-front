@@ -7,6 +7,7 @@ import {
 	MenuItem,
 } from '@material-ui/core'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -163,7 +164,7 @@ function AppMenu(props) {
 						to='/trans_eat'
 					>
 						<ListItemIcon>
-							<Restaurant />
+							<SupervisorAccountIcon />
 						</ListItemIcon>
 						<Typography variant='inherit'>Admin</Typography>
 					</MenuItem>

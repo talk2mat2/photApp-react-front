@@ -97,7 +97,7 @@ const Detailevents = ({
 			<BigText>Details</BigText>
 			<Listing>
 				<li>
-					<small>Google placses Address</small>
+					<small>{BookingDetail.address}</small>
 					<br />
 					{BookingDetail.timeStart && (
 						<>
@@ -181,6 +181,9 @@ const FoodOrderHistory = (props) => {
 					<small>
 						request status: {!item.accepted ? 'pending' : 'accepted'}
 					</small>
+					<br />
+					<small>Address : {item.address}</small> <br />
+					<small>Mobile : {item.photographerId.mobile}</small>
 					<br />
 					<small>Date : {item.bookingDate.substring(0, 10)}</small>
 				</li>
