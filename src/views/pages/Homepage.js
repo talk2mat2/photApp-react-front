@@ -115,7 +115,7 @@ const Homepage = () => {
             Do you need a Photographer <br className="d-none d-xl-block" />
             or Are you a photographer?
             <br />
-            <a
+            <Link
               className="tp-caption tp-static-layer btn btn-full-rounded btn-l btn-white scroll"
               data-x="center"
               data-y="middle"
@@ -128,11 +128,11 @@ const Homepage = () => {
               data-responsive="on"
               data-responsive_offset="on"
               style={{ zIndex: 9, marginTop: "20px" }}
-              href="sign_up.html"
+              to="/dashboard"
             >
               Hire a photographer
-            </a>
-            <a
+            </Link>
+            <Link
               className="tp-caption tp-static-layer btn btn-full-rounded btn-l btn-white scroll"
               data-x="center"
               data-y="middle"
@@ -145,10 +145,10 @@ const Homepage = () => {
               data-responsive="on"
               data-responsive_offset="on"
               style={{ zIndex: 9, marginTop: "20px" }}
-              href="photography_sign-up.html"
+              to="photographer/signup"
             >
               Become a photographer
-            </a>
+            </Link>
           </h2>
         </div>
         {/* /.container */}

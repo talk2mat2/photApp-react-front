@@ -1,9 +1,5 @@
 /* eslint-disable prettier/prettier */
 import React from "react";
-import { Provider } from "react-redux";
-import { store } from "./reducers/store";
-import { fetchUser } from "./actions/authactions";
-import AuthLoading from "./components/AuthLoading";
 import BaseRoute from "./components/BaseRoute";
 // import About from "./views/pages/About";
 // import Portfolio from "./views/pages/portfolio";

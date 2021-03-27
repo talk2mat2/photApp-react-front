@@ -31,6 +31,7 @@ import {
 } from '@material-ui/icons'
 import { Divider, MenuList, MenuItem } from '@material-ui/core'
 import cities from 'cities.json'
+import AutoCompletePlaces from './AutoComplleteMap'
 const useStyles = makeStyles((theme) => ({
 	button: {
 		margin: theme.spacing(2),
@@ -210,7 +211,7 @@ const Looking = () => {
 		timeout: 5000,
 		maximumAge: 0,
 	}
-
+	const [MapVisible, setMapVisiblle] = useState(false)
 	useEffect(() => {
 		setCardVisible(true)
 		const abortController = new AbortController()
@@ -300,6 +301,7 @@ const Looking = () => {
 	}
 	const handleSearchPhotoGrphers = async (values) => {
 		setSearching(true)
+		setMapVisiblle(false)
 		await axios
 			.post(
 				`${process.env.REACT_APP_API_URL}/users/SearchPhotogrAphersCloser`,
@@ -307,6 +309,7 @@ const Looking = () => {
 				{ headers: { authorization: token } }
 			)
 			.then((res) => {
+				setMapVisiblle(true)
 				setSearching(false)
 				console.log(res.data)
 				// setIsregistered(true)
@@ -316,6 +319,7 @@ const Looking = () => {
 			})
 			.catch((err) => {
 				setSearching(false)
+				setMapVisiblle(true)
 				if (err.response) {
 					// setErrorMessage(err.response.data.message)
 					console.log(err.response.data.message)
@@ -326,11 +330,11 @@ const Looking = () => {
 				console.log(err)
 			})
 	}
-	const handleToClick = (long1, lat1, address) => {
+	const handleToClick = async (long1, lat1, address) => {
 		// console.log(typeof long)
 		let lng = parseFloat(long1)
 		let lat = parseFloat(lat1)
-		console.log(lng, lat)
+		console.log(lng, lat, typeof lng, typeof lat)
 		setCardVisible(false)
 		setsessionVenue({
 			name: address,
@@ -338,7 +342,7 @@ const Looking = () => {
 			lat: lat,
 			lng: lng,
 		})
-		handleSearchPhotoGrphers({
+		await handleSearchPhotoGrphers({
 			sesionlocation: { lat: lat, lng: lng, address },
 		})
 	}
@@ -391,6 +395,9 @@ const Looking = () => {
 
 	useEffect(() => {
 		GetPricePriceTag()
+		setTimeout(() => {
+			setMapVisiblle(true)
+		}, 2000)
 	}, [])
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -460,7 +467,7 @@ const Looking = () => {
 								</MenuItem>
 							))}
 					</MenuList> */}
-					<Autocomplete
+					{/* <Autocomplete
 						placeholder='enter location'
 						apiKey={`${process.env.REACT_APP_API_KEY}`}
 						style={{
@@ -470,9 +477,10 @@ const Looking = () => {
 							borderColor: 'silver',
 						}}
 						onPlaceSelected={(place) => handleplaces(place)}
-						types={['address']}
+						types={['address', '(cities)']}
 						componentRestrictions={{ country: 'ng' }}
-					/>
+					/> */}
+					<AutoCompletePlaces handleplaces={handleplaces} />
 				</Card>
 			) : null}
 			{Searching ? (
@@ -509,18 +517,24 @@ const Looking = () => {
 						containerElement={<div style={{ height: `480px` }} />}
 						mapElement={<div style={{ height: `480px` }} />}
 					/> */}
-					<MapWithAMarker
-						mapcenter={sessionVenue}
-						sessionVenue={sessionVenue}
-						selectedMarker={mylocation}
-						photographers={photographers}
-						markers={locations}
-						onClick={handleClick}
-						googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvhnz2J6HiUuHj41jc5wgT9xpAKZzgOk&v=3.exp&libraries=geometry,drawing,places'
-						loadingElement={<div style={{ height: `100%` }} />}
-						containerElement={<div style={{ height: '100%', flex: 1 }} />}
-						mapElement={<div style={{ height: `100%` }} />}
-					/>
+					{MapVisible ? (
+						<MapWithAMarker
+							mapcenter={sessionVenue}
+							sessionVenue={sessionVenue}
+							selectedMarker={mylocation}
+							photographers={photographers}
+							markers={locations}
+							onClick={handleClick}
+							googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+							loadingElement={<div style={{ height: `100%` }} />}
+							containerElement={<div style={{ height: '100%', flex: 1 }} />}
+							mapElement={<div style={{ height: `100%` }} />}
+						/>
+					) : (
+						<BigText style={{ textAlign: 'center', marginTop: '30%' }}>
+							Loading..
+						</BigText>
+					)}
 				</Paper>
 			) : (
 				<Typography
@@ -532,7 +546,7 @@ const Looking = () => {
 			)}
 			{PhotoDetails ? (
 				<PhotoGrapherDetails>
-					<BigText>photographer/ videographer</BigText>
+					<BigText>photographer/ videographer info</BigText>
 					<Listing>
 						{PhotoInfo && (
 							<>
@@ -574,7 +588,7 @@ const Looking = () => {
 								alt='img'
 							/>
 
-							<small>price: NGA {PriceTag}/min </small>
+							<small>price: NGN {PriceTag}/min </small>
 
 							<small>photo/video services</small>
 						</>

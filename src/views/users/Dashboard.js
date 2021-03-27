@@ -36,7 +36,7 @@ const Dashboard = () => {
 						mapcenter={mylocation}
 						marker={mylocation}
 						locations={locations}
-						googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCJMOf24QZuH0yO64jYsiEC2s0eDLE7-ic&v=3.exp&libraries=geometry,drawing,places'
+						googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
 						loadingElement={<div style={{ height: `480px` }} />}
 						containerElement={<div style={{ height: `95vh` }} />}
 						mapElement={<div style={{ height: `100%` }} />}
