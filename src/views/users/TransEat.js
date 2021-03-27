@@ -12,9 +12,9 @@ display:flex;
 flex-direction:column;
 align-items:center;
 background-color: #f1f0f0;
-min-height:440px;
+min-height:100vh;
 padding-top:10px;
-overflow-y: scroll;
+
 `
 const BigText = Styled.p`
 font-size:20px;
@@ -77,6 +77,16 @@ border:none;
 
 	
 `
+const SearchUsersContainer = Styled.div`
+min-height:100px;
+padding:10px;
+box-sizing:border-box;
+width:100%;
+position: absolute;
+z-index:10;
+transform:translateY(-100);
+background-color:#fff;
+left:0;`
 const Buttons = Styled(Button)`
 && {
 align-self:center;
@@ -106,6 +116,10 @@ const TransEat = () => {
 	})
 	const CurrentUser = useSelector((state) => state.user.currentUser)
 	const token = CurrentUser && CurrentUser.token
+	const [searchUsers, setSearchUsers] = useState('')
+	const [searchPhotographers, setSearPhotographers] = useState('')
+	const [searchUsersResult, setSearchUsersResult] = useState([])
+	const [searchPhotographersResult, setsearchPhotographersResult] = useState([])
 	const [PricetagLoading, setPricetagLoading] = useState(false)
 	const handleOpen = () => {
 		setOpen(true)
@@ -168,10 +182,84 @@ const TransEat = () => {
 				console.log(err)
 			})
 	}
+	const SearchUsersApi = async (search) => {
+		await axios
+			.get(
+				`${process.env.REACT_APP_API_URL}/users/SearchUsers?search=${search}`,
+				{
+					headers: { authorization: token },
+				}
+			)
+			.then((res) => {
+				console.log(res.data.userData)
+				setSearchUsersResult(res.data.userData)
+			})
+			.catch((err) => {
+				setCountLoading(false)
+
+				if (err.response) {
+					console.log(err.response.data.message)
+				}
+				console.log(err)
+			})
+	}
+	const SearchPhotographersApi = async (search) => {
+		await axios
+			.get(
+				`${process.env.REACT_APP_API_URL}/users/SearchPhotographers?search=${search}`,
+				{
+					headers: { authorization: token },
+				}
+			)
+			.then((res) => {
+				console.log(res.data.userData)
+				setsearchPhotographersResult(res.data.userData)
+			})
+			.catch((err) => {
+				setCountLoading(false)
+
+				if (err.response) {
+					console.log(err.response.data.message)
+				}
+				console.log(err)
+			})
+	}
+
+	const handleSearch = async (value) => {
+		setSearchUsers(value)
+
+		await SearchUsersApi(value)
+	}
+	const handleSearch2 = async (value) => {
+		setSearPhotographers(value)
+
+		await SearchPhotographersApi(value)
+	}
 	React.useEffect(() => {
 		fetchPriceTag()
 		CountUsersAndPhotgraphers()
 	}, [])
+
+	const MapUsersResult = () => {
+		return searchUsersResult.map((item) => (
+			<>
+				<li style={{ fontSize: '9px', color: 'grey', lineHeight: '0.3px' }}>
+					{item.fname}
+				</li>
+				<li style={{ fontSize: '9px', color: 'grey' }}>{item.Email}</li>
+			</>
+		))
+	}
+	const MapUsersResult2 = () => {
+		return searchPhotographersResult.map((item) => (
+			<>
+				<li style={{ fontSize: '9px', color: 'grey', lineHeight: '0.3px' }}>
+					{item.fname}
+				</li>
+				<li style={{ fontSize: '9px', color: 'grey' }}>{item.Email}</li>
+			</>
+		))
+	}
 	return (
 		<Container>
 			<BigText
@@ -249,8 +337,32 @@ const TransEat = () => {
 					</CardsContainer>
 				</CardContainer>
 				<CardContainer>
-					<TextFields id='searchusers' label='search users' />
-					<TextFields id='outlinedphotographers' label='search photgraphers' />
+					<div style={{ position: 'relative' }}>
+						<TextFields
+							value={searchUsers}
+							onChange={(e) => handleSearch(e.target.value)}
+							id='searchusers'
+							label='search users by email'
+						/>
+						{searchUsersResult && searchUsersResult.length > 0 && (
+							<SearchUsersContainer>
+								<Listing>{MapUsersResult()}</Listing>
+							</SearchUsersContainer>
+						)}
+					</div>
+					<div style={{ position: 'relative' }}>
+						<TextFields
+							value={searchPhotographers}
+							onChange={(e) => handleSearch2(e.target.value)}
+							id='searchPhotogrphers'
+							label='search Photogrphers by Email'
+						/>
+						{searchPhotographersResult && searchPhotographersResult.length > 0 && (
+							<SearchUsersContainer>
+								<Listing>{MapUsersResult2()}</Listing>
+							</SearchUsersContainer>
+						)}
+					</div>
 				</CardContainer>
 			</Listing>
 		</Container>
