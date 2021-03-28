@@ -10,6 +10,20 @@ import BaseRoute from "./components/BaseRoute";
 // import './style.css'
 
 function App() {
+  window.OneSignal = window.OneSignal || [];
+  const OneSignal = window.OneSignal;
+
+  React.useEffect(()=>{
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "6419071e-2c4d-43b0-906c-3704961722e1",
+        notifyButton: {
+          enable: false,
+        },
+      });
+      OneSignal.showNativePrompt();
+    });
+  },[])
 
   return (
 <>
