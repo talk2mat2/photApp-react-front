@@ -25,18 +25,20 @@ function App() {
         },
       });
       OneSignal.showNativePrompt();
+      userData && OneSignal.setExternalUserId(userData._id);
+      !userData && OneSignal.removeExternalUserId();
     });
   
   },[])
 
-  React.useEffect(()=>{
-    userData && OneSignal.push(function() {
-      OneSignal.setExternalUserId(userData._id);
-    });
-    !userData && OneSignal.push(function() {
-      OneSignal.removeExternalUserId();
-    });
-  },[userData,OneSignal])
+  // React.useEffect(()=>{
+  //   userData && OneSignal.push(function() {
+  //     OneSignal.setExternalUserId(userData._id);
+  //   });
+  //   !userData && OneSignal.push(function() {
+  //     OneSignal.removeExternalUserId();
+  //   });
+  // },[userData,OneSignal])
 
   return (
 <>
