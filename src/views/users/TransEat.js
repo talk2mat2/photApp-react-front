@@ -364,6 +364,9 @@ const TransEat = () => {
 						)}
 					</div>
 				</CardContainer>
+				<CardContainer>
+					<BigText style={{ fontSize: '14px' }}>Contact messages</BigText>
+				</CardContainer>
 			</Listing>
 		</Container>
 	)
