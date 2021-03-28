@@ -23,6 +23,9 @@ function App() {
       });
       OneSignal.showNativePrompt();
     });
+     OneSignal.push(function() {
+    OneSignal.setExternalUserId('605e17222839b416d88c0b31');
+  });
   },[])
 
   return (
