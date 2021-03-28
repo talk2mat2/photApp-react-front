@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from "react";
 import BaseRoute from "./components/BaseRoute";
+import { useSelector } from 'react-redux'
 // import About from "./views/pages/About";
 // import Portfolio from "./views/pages/portfolio";
 // import How_it_works from "./views/pages/how_it_works";
@@ -10,6 +11,8 @@ import BaseRoute from "./components/BaseRoute";
 // import './style.css'
 
 function App() {
+  const CurrentUser = useSelector((state) => state.user.currentUser)
+  const userData = CurrentUser && CurrentUser.userData
   window.OneSignal = window.OneSignal || [];
   const OneSignal = window.OneSignal;
 
@@ -23,10 +26,17 @@ function App() {
       });
       OneSignal.showNativePrompt();
     });
-     OneSignal.push(function() {
-    OneSignal.setExternalUserId('605e17222839b416d88c0b31');
-  });
+  
   },[])
+
+  React.useEffect(()=>{
+    userData && OneSignal.push(function() {
+      OneSignal.setExternalUserId(userData._id);
+    });
+    !userData && OneSignal.push(function() {
+      OneSignal.removeExternalUserId();
+    });
+  },[userData,OneSignal])
 
   return (
 <>
