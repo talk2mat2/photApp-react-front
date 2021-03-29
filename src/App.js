@@ -34,12 +34,9 @@ function App() {
      userData && OneSignal.push(function() {
       OneSignal.setExternalUserId(userData._id);
     });
-     !userData && OneSignal.push(function() {
-      OneSignal.removeExternalUserId(results=>console.log(results));
-    });
-    //  !userData && OneSignal.removeExternalUserId(results=>console.log(results));
+     !userData && OneSignal.removeExternalUserId(results=>console.log(results));
   
-  },[])
+  })
 
   return (
 <>
