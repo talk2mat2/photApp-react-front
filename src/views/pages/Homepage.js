@@ -82,7 +82,7 @@ const Homepage = () => {
               >
                 Built For <br /> Photographers
               </div>
-              <a
+              <Link
                 className="tp-caption tp-static-layer btn btn-full-rounded btn-l btn-white scroll"
                 data-x="center"
                 data-y="middle"
@@ -95,10 +95,10 @@ const Homepage = () => {
                 data-responsive="on"
                 data-responsive_offset="on"
                 style={{ zIndex: 9 }}
-                href="how_it_works.html"
+                to="/How_it_works"
               >
                 learn more
-              </a>{" "}
+              </Link>{" "}
             </div>
             <div className="tp-bannertimer tp-bottom" />
           </div>
@@ -181,7 +181,7 @@ const Homepage = () => {
                   as creatives from your chosen location will be readily
                   available to you.
                 </p>
-                <a
+                <Link
                   className="tp-caption tp-static-layer btn btn-full-rounded btn-l btn-white scroll"
                   data-x="center"
                   data-y="middle"
@@ -194,10 +194,10 @@ const Homepage = () => {
                   data-responsive="on"
                   data-responsive_offset="on"
                   style={{ zIndex: 9, marginTop: "20px" }}
-                  href="about.html"
+                  to="/about"
                 >
                   Learn More
-                </a>
+                </Link>
               </div>
               {/* /column */}
             </div>
@@ -538,7 +538,7 @@ const Homepage = () => {
                       formats, soft/hard copy, diligently edited and perfected
                       fory our memories
                     </p>
-                    <a
+                    <Link
                       className="tp-caption tp-static-layer btn btn-full-rounded btn-l btn-white scroll"
                       data-x="center"
                       data-y="middle"
@@ -551,10 +551,10 @@ const Homepage = () => {
                       data-responsive="on"
                       data-responsive_offset="on"
                       style={{ zIndex: 9, marginTop: "20px" }}
-                      href="sign_up.html"
+                      to="/SignUp"
                     >
                       Get Started
-                    </a>
+                    </Link>
                   </div>
                   {/*/column */}
                 </div>
