@@ -31,10 +31,16 @@ function App() {
 
   React.useEffect(()=>{
   
-     userData && OneSignal.setExternalUserId(userData._id);
-  
-  
-     !userData && OneSignal.removeExternalUserId();
+     userData && OneSignal.setExternalUserId(userData._id, (results) => {
+      // The results will contain push and email success statuses
+      console.log('Results of setting external user id');
+      console.log(results);
+      if (results.push && results.push.success) {
+        console.log('Results of setting external user id push status:');
+        console.log(results.push.success);
+      }
+    })
+     !userData && OneSignal.removeExternalUserId(results=>console.log(results));
   
   },[userData])
 
