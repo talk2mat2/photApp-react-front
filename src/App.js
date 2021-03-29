@@ -34,9 +34,16 @@ function App() {
      userData && OneSignal.push(function() {
       OneSignal.setExternalUserId(userData._id);
     });
-     !userData && OneSignal.removeExternalUserId(results=>console.log(results));
+   
   
   },[])
+  React.useEffect(()=>{
+    !userData &&  OneSignal.push(function() {
+      OneSignal.removeExternalUserId(results=>console.log(results));
+    });
+
+
+  },[userData])
 
   return (
 <>
