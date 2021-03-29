@@ -16,33 +16,27 @@ function App() {
   window.OneSignal = window.OneSignal || [];
   const OneSignal = window.OneSignal;
 
-  React.useEffect(()=>{
-    OneSignal.push(function() {
-      OneSignal.init({
-        appId: "6419071e-2c4d-43b0-906c-3704961722e1",
-        notifyButton: {
-          enable: false,
-        },
-      });
-      OneSignal.showNativePrompt();
-    });
+  // React.useEffect(()=>{
+  //   OneSignal.push(function() {
+  //     OneSignal.init({
+  //       appId: "6419071e-2c4d-43b0-906c-3704961722e1",
+  //       notifyButton: {
+  //         enable: false,
+  //       },
+  //     });
+  //     OneSignal.showNativePrompt();
+  //   });
   
-  },[])
+  // },[])
 
   React.useEffect(()=>{
   
-     userData && OneSignal.setExternalUserId(userData._id, (results) => {
-      // The results will contain push and email success statuses
-      console.log('Results of setting external user id');
-      console.log(results);
-      if (results.push && results.push.success) {
-        console.log('Results of setting external user id push status:');
-        console.log(results.push.success);
-      }
-    })
+     userData && OneSignal.push(function() {
+      OneSignal.setExternalUserId(userData._id);
+    });
      !userData && OneSignal.removeExternalUserId(results=>console.log(results));
   
-  },[userData])
+  },[])
 
   return (
 <>
