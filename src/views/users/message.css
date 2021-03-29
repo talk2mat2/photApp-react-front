@@ -1,0 +1,26 @@
+.glowing-border {
+    border: 2px solid #dadada;
+    border-radius: 2px;
+}
+
+.glowing-border:focus { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+#title {
+width: 80%;
+height: 25px;
+color:grey;
+font-size: 15px;
+}
+
+#Textarea{
+    border: 2px solid #dadada;
+    font-size: 13px;
+    line-height: 1;
+
+      margin: 0; 
+      padding: 0; 
+}

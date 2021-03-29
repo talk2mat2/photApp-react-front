@@ -37,7 +37,7 @@ function BaseRoute() {
         <ProtectedRoute exact component={Looking} path="/looking" />
         <ProtectedRoute exact component={Profile} path="/profile" />
         <ProtectedRoute exact component={Promos} path="/promos" />
-        <ProtectedRoute exact component={TransEat} path="/trans_eat" />
+        <ProtectedRoute component={TransEat} path="/trans_eat" />
         <ProtectedRoute  component={Trips} path="/trips" />
         <ProtectedRoute exact component={Wallet} path="/wallet" />
         <ProtectedRoute component={Support} path="/support" />

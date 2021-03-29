@@ -120,7 +120,8 @@ const Support = (props) => {
 						}}
 					>
 						<li style={{ textDecoration: 'underline' }}>
-							{item.title.slice(0, 29)}
+							{item.title.slice(0, 29)}{' '}
+							<small>from -{item.sender.fname && item.sender.fname}</small>
 						</li>
 					</Link>
 				)

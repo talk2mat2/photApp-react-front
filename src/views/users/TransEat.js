@@ -4,7 +4,10 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import TransitionsModal from './modal'
 import { useSelector } from 'react-redux'
+import MessageModal from './MessageModal.jsx'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { Switch, Route, Link, useHistory } from 'react-router-dom'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import axios from 'axios'
 const Container = Styled.div`
 width:100%;
@@ -105,8 +108,64 @@ outline:none;
   // }
 }
 `
+const DetailMessages = ({
+	location: {
+		state: { data },
+	},
+}) => {
+	const [MessageModalOpen, setMessageModalOpen] = useState(false)
+	const handleClose = () => {
+		setMessageModalOpen(false)
+	}
+	const handleMessageOpen = () => {
+		setMessageModalOpen(true)
+	}
+	let history = useHistory()
+	return (
+		<>
+			{/* <div
+				onClick={history.goBack}
+				style={{
+					position: 'absolute',
+					left: '60px',
+					top: '40px',
+					cursor: 'pointer',
+				}}
+			>
+				<ArrowBackIcon style={{ fontSize: '30px' }} />
+			</div> */}
 
-const TransEat = () => {
+			<Listing>
+				{/* <li>
+					{' '}
+					<BigText>{data.fname}</BigText>
+				</li> */}
+				<li>
+					<small>
+						{data.fname} {data.lname}
+					</small>
+				</li>
+				<li>
+					<small>{data.Email}</small>
+				</li>
+				<li>
+					<small>{data.mobile}</small>
+				</li>
+				<li>
+					<Buttons onClick={handleMessageOpen}>
+						<small>send message</small>
+					</Buttons>
+				</li>
+			</Listing>
+			<MessageModal
+				data={data}
+				open={MessageModalOpen}
+				handleClose={handleClose}
+			/>
+		</>
+	)
+}
+const TransEat = (props) => {
 	const [open, setOpen] = React.useState(false)
 	const [countLoading, setCountLoading] = React.useState(false)
 	const [priceTag, setPricetag] = React.useState(0)
@@ -116,6 +175,7 @@ const TransEat = () => {
 	})
 	const CurrentUser = useSelector((state) => state.user.currentUser)
 	const token = CurrentUser && CurrentUser.token
+	const { item, history, match } = props
 	const [searchUsers, setSearchUsers] = useState('')
 	const [searchPhotographers, setSearPhotographers] = useState('')
 	const [searchUsersResult, setSearchUsersResult] = useState([])
@@ -242,23 +302,37 @@ const TransEat = () => {
 
 	const MapUsersResult = () => {
 		return searchUsersResult.map((item) => (
-			<>
+			<div
+				style={{ cursor: 'pointer' }}
+				onClick={handleClickResults.bind(this, item)}
+			>
 				<li style={{ fontSize: '9px', color: 'grey', lineHeight: '0.3px' }}>
 					{item.fname}
 				</li>
 				<li style={{ fontSize: '9px', color: 'grey' }}>{item.Email}</li>
-			</>
+			</div>
 		))
 	}
 	const MapUsersResult2 = () => {
 		return searchPhotographersResult.map((item) => (
-			<>
+			<div
+				style={{ cursor: 'pointer' }}
+				onClick={handleClickResults.bind(this, item)}
+			>
 				<li style={{ fontSize: '9px', color: 'grey', lineHeight: '0.3px' }}>
 					{item.fname}
 				</li>
 				<li style={{ fontSize: '9px', color: 'grey' }}>{item.Email}</li>
-			</>
+			</div>
 		))
+	}
+	const handleClickResults = (item) => {
+		setSearchUsersResult([])
+		setsearchPhotographersResult([])
+		history.push({
+			pathname: `${match.url}/userDetails`,
+			state: { data: item },
+		})
 	}
 	return (
 		<Container>
@@ -365,7 +439,15 @@ const TransEat = () => {
 					</div>
 				</CardContainer>
 				<CardContainer>
-					<BigText style={{ fontSize: '14px' }}>Contact messages</BigText>
+					<Switch>
+						<Route exact path={`${match.url}`}>
+							<></>
+						</Route>
+						<Route
+							path={`${match.url}/userDetails`}
+							component={DetailMessages}
+						/>
+					</Switch>
 				</CardContainer>
 			</Listing>
 		</Container>
