@@ -115,15 +115,6 @@ const Profile = (props) => {
 								<Typography variant='body2' gutterBottom>
 									{userData.Email}
 								</Typography>
-								{/* <div style={{ width: '50%' }}>
-									<GooglePlacesAutocomplete
-										apiKey='AIzaSyAPvhnz2J6HiUuHj41jc5wgT9xpAKZzgOk'
-										selectProps={{
-											value,
-											onChange: (e) => handleplaces(e),
-										}}
-									/>
-								</div> */}
 							</Grid>
 						</Grid>
 					</Grid>
