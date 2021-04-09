@@ -11,8 +11,26 @@
     <meta name="author" content="" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/media/ogaphotosmain.jpg" />
     <title>ogaphotos</title>
-    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/style/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/style/css/plugins.css" />
+
+    <link rel="stylesheet" href="/themekit/css/bootstrap-grid.css" />
+    <link rel="stylesheet" href="/themekit/css/style.css" />
+    <link rel="stylesheet" href="/themekit/css/glide.css" />
+    <link rel="stylesheet" href="/themekit/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/themekit/css/content-box.css" />
+    <link rel="stylesheet" href="/themekit/css/contact-form.css" />
+    <link rel="stylesheet" href="/themekit/css/media-box.css" />
+    <link rel="stylesheet" href="/skin.css" />
+
+    <!-- <link
+      rel="stylesheet"
+      type="text/css"
+      href="%PUBLIC_URL%/style/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="%PUBLIC_URL%/style/css/plugins.css"
+    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -45,24 +63,35 @@
       href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i"
       rel="stylesheet"
       type="text/css"
-    />
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-<script>
-  window.OneSignal = window.OneSignal || [];
-  OneSignal.push(function() {
-      OneSignal.init({
-        appId: "6419071e-2c4d-43b0-906c-3704961722e1",
-        notifyButton: {
-          enable: false,
-        },
+    /> -->
+    <script src="/themekit/scripts/jquery.min.js"></script>
+    <script
+      src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+      async=""
+    ></script>
+
+    <script src="/themekit/scripts/main.js"></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function () {
+        OneSignal.init({
+          appId: "6419071e-2c4d-43b0-906c-3704961722e1",
+          notifyButton: {
+            enable: false,
+          },
+        });
+        OneSignal.showNativePrompt();
       });
-      OneSignal.showNativePrompt();
-    });
-</script>
+    </script>
   </head>
-  <body class="onepage" data-spy="scroll" data-target=".navbar">
+  <body>
+    <div id="preloader"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root" class="content-wrapper"></div>
+    <!-- <script
+      data-setting="codrop"
+      src="../../themekit.dev/tools/sidebar/sidebar.js"
+    ></script> -->
   </body>
   <!-- <script src="js/jquery.js"></script>
 <script src="js/popper.min.js"></script>

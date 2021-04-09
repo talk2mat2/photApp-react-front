@@ -7,20 +7,20 @@ import Header from "../../components/Header";
 import { Scripts } from "../../script";
 
 const Homepage = () => {
-  useEffect(() => {
-    const loadScript = async () => {
-      await Scripts.forEach(async (item) => {
-        const script = document.createElement("script");
-        script.src = item.src;
-        script.async = true;
-        document.body.appendChild(script);
-      });
-    };
-    loadScript();
-  },[]);
+  // useEffect(() => {
+  //   const loadScript = async () => {
+  //     await Scripts.forEach(async (item) => {
+  //       const script = document.createElement("script");
+  //       script.src = item.src;
+  //       script.async = true;
+  //       document.body.appendChild(script);
+  //     });
+  //   };
+  //   loadScript();
+  // },[]);
   return (
     <div>
-      <Header/>
+      <Header />
       <section id="home" className="pt-0 mt-0">
         <div className="rev_slider_wrapper fullscreen-container">
           <div
@@ -640,7 +640,7 @@ const Homepage = () => {
         </div>
         {/* /.wrapper */}
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

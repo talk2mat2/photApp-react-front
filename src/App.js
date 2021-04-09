@@ -1,7 +1,11 @@
 /* eslint-disable prettier/prettier */
 import React from "react";
 import BaseRoute from "./components/BaseRoute";
-import { useSelector } from 'react-redux'
+import { BrowserRouter as Router } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Header from "./components/headerNew";
+import { Scripts } from "./scriptNew";
+import Footer from "./components/FooterNew";
 // import About from "./views/pages/About";
 // import Portfolio from "./views/pages/portfolio";
 // import How_it_works from "./views/pages/how_it_works";
@@ -10,9 +14,11 @@ import { useSelector } from 'react-redux'
 // import { Scripts } from "./script";
 // import './style.css'
 
+// import "./skin.css";
+
 function App() {
-  const CurrentUser = useSelector((state) => state.user.currentUser)
-  const userData = CurrentUser && CurrentUser.userData
+  const CurrentUser = useSelector((state) => state.user.currentUser);
+  const userData = CurrentUser && CurrentUser.userData;
   window.OneSignal = window.OneSignal || [];
   const OneSignal = window.OneSignal;
 
@@ -26,27 +32,42 @@ function App() {
   //     });
   //     OneSignal.showNativePrompt();
   //   });
-  
+
   // },[])
 
-  React.useEffect(()=>{
-  
-     userData && OneSignal.push(function() {
-      OneSignal.setExternalUserId(userData._id);
-    });
-     !userData && OneSignal.removeExternalUserId(results=>console.log(results));
-  
-  })
+  React.useEffect(() => {
+    if (userData) {
+      OneSignal.push(function () {
+        OneSignal.setExternalUserId(userData._id);
+      });
+    } else {
+      OneSignal.push(function () {
+        OneSignal.removeExternalUserId((results) => console.log(results));
+        // OneSignal.setExternalUserId(userData._id);
+      });
+    }
 
+    // !userData &&
+    //   OneSignal.removeExternalUserId((results) => console.log(results));
+  });
+
+  React.useEffect(() => {
+    const loadScript = async () => {
+      await Scripts.forEach(async (item) => {
+        const script = document.createElement("script");
+        script.src = item.src;
+        // script.async = true;
+
+        document.body.appendChild(script);
+      });
+    };
+    loadScript();
+  }, []);
   return (
-<>
-      {/* <AuthLoading> */}
+    <Router>
       <BaseRoute />
-      {/* <SignUp />
-        <About />
-        <Contact /> */}
-      {/* </AuthLoading> */}
- </>
+      <Footer />
+    </Router>
   );
 }
 
