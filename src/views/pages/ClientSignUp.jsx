@@ -214,7 +214,6 @@ const ClientSignUp = (props) => {
             onChange={handleFnameChange}
             value={fname}
             type="text"
-            placeholder="First Name"
             required
           />
         </li>
@@ -226,7 +225,6 @@ const ClientSignUp = (props) => {
             onChange={handleLnameChange}
             value={lname}
             type="text"
-            placeholder="Last Name"
             required
           />
         </li>
@@ -238,7 +236,6 @@ const ClientSignUp = (props) => {
             onChange={handleEmailChange}
             value={email}
             type="email"
-            placeholder="Email"
             required
           />
         </li>
@@ -250,7 +247,6 @@ const ClientSignUp = (props) => {
             onChange={handleMobileChange}
             value={mobile}
             type="tel"
-            placeholder="Phone No."
             required
           />
         </li>
@@ -261,7 +257,6 @@ const ClientSignUp = (props) => {
             onChange={handlePasswordChange}
             value={password}
             type="password"
-            placeholder="Password"
             required
           />
         </li>
@@ -272,7 +267,6 @@ const ClientSignUp = (props) => {
             onChange={handleConfPasswordChange}
             value={confpass}
             type="password"
-            placeholder="Confirm Password"
             required
           />
         </li>

@@ -181,7 +181,6 @@ const PhotoGrapherLoginNew = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
-                placeholder="Email"
                 required
               />
             </li>
@@ -193,7 +192,6 @@ const PhotoGrapherLoginNew = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
-                placeholder="Password"
                 required
               />
             </li>

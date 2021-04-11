@@ -25,6 +25,7 @@ const SelectContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   width: 100%;
   flex-wrap: wrap;
   background-color: #ffff;
@@ -77,8 +78,10 @@ const Margin = styled.div`
 const Listing = styled.ul`
   margin-top: 20px;
   display: flex;
+
   flex-direction: column;
   width: 100%;
+  justify-content: center;
   padding: 0px;
   align-items: center;
   @media (max-width: 630px) {
@@ -98,14 +101,14 @@ const Listing = styled.ul`
 `;
 const VerticalDivider = styled.div`
   height: 400px;
-  width: 10px;
+  width: 30px;
   @media (max-width: 630px) {
     display: none;
   }
 `;
 
 const Input = styled.input`
-  width: 90%;
+  width: 100%;
   border: none;
   color: grey;
 
@@ -253,9 +256,8 @@ const PhotoGrapherSignup = (props) => {
       >
         <Margin />
         <BigText>
-          Lest know Your kind of{" "}
+          Let's know Your kind of{" "}
           <BigText style={{ color: "rgb(71, 178, 228)" }}>photographer</BigText>
-          .
         </BigText>
 
         <SelectContainer>
