@@ -133,8 +133,8 @@ const Buttons = styled(Button)`
     margin-top:20px;
  border-radius:20px;
  &:hover {
-    color: rgb(71, 178, 228);
-    background-color: white;
+  color: #ffff;
+    background-color: rgb(71, 178, 228);
     border: 1px solid rgb(71, 178, 228);
   }
 `;

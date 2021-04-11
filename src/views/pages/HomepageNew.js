@@ -738,7 +738,7 @@ const Homepage = () => {
                       <img src="media/t1.jpg" alt="" />
                       <div className="caption">
                         <h2>Coriss Ambady</h2>
-                        <span>Founder</span>
+                        <span>Photographer</span>
                         <span className="icon-links">
                           <a href="#" target="_blank">
                             <i className="icon-facebook" />

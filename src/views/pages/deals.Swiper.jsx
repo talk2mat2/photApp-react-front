@@ -159,7 +159,12 @@ const DealsSwiper = (props) => {
   );
   return (
     <Div>
-      <TopText></TopText>
+      <TopText>
+        <p style={{ color: "grey", fontSize: "18px" }}>
+          {" "}
+          Discover More Posibilities
+        </p>
+      </TopText>
       <Swiper
         effect="fade"
         pagination={{ clickable: true }}
