@@ -5,6 +5,19 @@ import Footer from "../../components/FooterNew";
 import Header from "../../components/headerNew";
 // import Sliders from "../../components/Sliders";
 import { Scripts } from "../../scriptNew";
+import DealsSwiper from "./deals.Swiper";
+import styled from "styled-components";
+import Swipper from "./swipper";
+const ListDiv = styled.div`
+  @media (max-width: 550px) {
+    display: none;
+  }
+`;
+const ListDiv2 = styled.div`
+  @media (min-width: 550px) {
+    display: none;
+  }
+`;
 
 const Homepage = () => {
   useEffect(() => {
@@ -20,12 +33,8 @@ const Homepage = () => {
   }, []);
   return (
     <div>
-      <main>
-        <section
-          id="HomeBase"
-          className="section-base"
-          style={{ marginTop: "0px" }}
-        >
+      <main id="HomeBase">
+        <section className="section-base" style={{ marginTop: "0px" }}>
           <div className="container">
             <div
               className="row align-items-center"
@@ -56,7 +65,7 @@ const Homepage = () => {
                 <span className="space-sm" />
                 <Link
                   to="/login"
-                  href="#"
+                  // href="#"
                   className="btn-text active hidden-sm"
                 >
                   Explore fetures
@@ -75,10 +84,10 @@ const Homepage = () => {
             </div>
           </div>
         </section>
-        <section id="overview" className="section-base section-bottom-layer">
+        {/* <section id="overview" className="section-base section-bottom-layer">
           <div className="container">
             <ul
-              className="slider slider-zoom-center"
+              className="slider "
               data-options="type:carousel,perView:5,perViewMd:3,perViewSm:1,focusAt:center,gap:10,nav:true,controls:out,autoplay:3000"
             >
               <li>
@@ -143,18 +152,25 @@ const Homepage = () => {
               </li>
             </ul>
           </div>
+        </section> */}
+        <section id="overview" className="section-base section-bottom-layer">
+          <ListDiv className="container">
+            {" "}
+            <DealsSwiper />
+          </ListDiv>
+          <ListDiv2 className="container">
+            <div style={{ height: "100px" }}></div>
+            <Swipper />
+          </ListDiv2>
         </section>
+        {/* <div style={{ height: "50px" }}></div> */}
         <section className="section-base section-color section-top-overflow">
           <div className="container">
             <div className="cnt-box cnt-call">
               <i className="im-instagram" />
               <div className="caption">
                 <h2>Download the app now.</h2>
-                <p>
-                  Lorem ipsum dolor sitamet consectetur adipisicing elito sed do
-                  eiusmod tempore. Duisera aute irure dolor in reprehenderit e
-                  eu fugiat nulla pariatur.
-                </p>
+                <p>Sign Up to win a Free Photoshoot with our app</p>
                 <a href="#" className="btn btn-circle btn-sm">
                   Download App
                 </a>
@@ -200,9 +216,10 @@ const Homepage = () => {
                   for a pixel perfect editing.
                 </h2>
                 <p>
-                  Lorem ipsum dolor sit ametno sea takimata sanctus est Lorem
-                  ipsum dolor sit amete. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco sea takimata sanctus eslaboriso.
+                  Ogaphotos has both Video and Phtography specialist all over
+                  the cities for all your events. Trust us to do a good job in
+                  matching you with the best in-demand photographers Book
+                  multiple photoshoots with ease or Contact Us for more
                 </p>
                 <a href="#" className="btn-text">
                   Explore services
@@ -238,17 +255,20 @@ const Homepage = () => {
         </section>
         <section id="pricing" className="section-base section-bottom-layer">
           <div className="container">
+            <div style={{ height: "100px" }}></div>
             <h2 className="align-center">Simple cheap plans for everyone.</h2>
             <p className="align-center width-650">
-              Lorem ipsum dolor sit amet no sea takimata sanctus est Lorem ipsum
-              dolor sit amete sare nostrud exercitation ullamco sea takiquis
-              nostrud exercitatio.
+              Ogaphoto gives you stunning visuals for every budget, with no
+              hidden costs or fees, you get what you pay for. We also provide
+              after shoot support and access to storage till you are ready to
+              receive them. We recommend the best-matched photographers in
+              realtime based on your need.
             </p>
             <hr className="space" />
             <div className="tab-box" data-tab-anima="fade-in">
               <ul className="tab-nav align-center">
                 <li className="active">
-                  <a href="#">Monthly plan</a>
+                  <a href="#">Per min Plan</a>
                 </li>
                 <li>
                   <a href="#">Annual plan</a>
@@ -264,18 +284,22 @@ const Homepage = () => {
                   <div className="col-lg-4 anima">
                     <div className="cnt-box cnt-pricing-table">
                       <div className="top-area">
-                        <h2>Personal plan</h2>
+                        <h2>Photography</h2>
                         <div className="price">
                           $<span>19</span>
                         </div>
                         <p>Per month</p>
                       </div>
                       <ul>
-                        <li>1000 messages</li>
-                        <li>15GB storage</li>
-                        <li>10 projects</li>
+                        <li> Portraits,</li>
+                        <li> Personal Branding,</li>
+                        <li> Social Content Headshots,</li>
                         <li>Premium support</li>
+                        <li>Family Shoots</li>
+                        <li> Lifestyle</li>
+                        <li> Fashion</li>
                       </ul>
+
                       <div className="bottom-area">
                         <a
                           className="btn btn-circle btn-sm btn-border"
@@ -289,18 +313,22 @@ const Homepage = () => {
                   <div className="col-lg-4 anima">
                     <div className="cnt-box cnt-pricing-table pricing-table-big">
                       <div className="top-area">
-                        <h2>Business plan</h2>
+                        <h2>Videography</h2>
                         <div className="price">
                           $<span>49</span>
                         </div>
                         <p>Per month</p>
                       </div>
                       <ul>
-                        <li>2000 messages</li>
-                        <li>20GB storage</li>
-                        <li>50 projects</li>
-                        <li>Premium support</li>
+                        <li>Kickstarter Campaigns</li>
+                        <li>Instructional Videos</li>
+                        <li>Company Profiles</li>
+                        <li>Family Moments</li>
+                        <li>Weddings</li>
+                        <li>Webisodes,</li>
+                        <li>Makeup Shoots</li>
                       </ul>
+
                       <div className="bottom-area">
                         <a
                           className="btn btn-circle btn-sm btn-border"
@@ -314,18 +342,22 @@ const Homepage = () => {
                   <div className="col-lg-4 anima">
                     <div className="cnt-box cnt-pricing-table">
                       <div className="top-area">
-                        <h2>Enterprise plan</h2>
+                        <h2>Events</h2>
                         <div className="price">
                           $<span>89</span>
                         </div>
                         <p>Per month</p>
                       </div>
                       <ul>
-                        <li>8000 messages</li>
-                        <li>30GB storage</li>
-                        <li>100 projects</li>
-                        <li>Premium support</li>
+                        <li>Special Events</li>
+                        <li>Parties</li>
+                        <li> Sports & Activities,</li>
+                        <li> Real Estate Home Tours</li>
+                        <li>Bachelorette Showers</li>
+                        <li>Concerts & Birthdays</li>
+                        <li>Venues</li>
                       </ul>
+
                       <div className="bottom-area">
                         <a
                           className="btn btn-circle btn-sm btn-border"
@@ -343,17 +375,20 @@ const Homepage = () => {
                   <div className="col-lg-4">
                     <div className="cnt-box cnt-pricing-table">
                       <div className="top-area">
-                        <h2>Personal plan</h2>
+                        <h2>Photography</h2>
                         <div className="price">
                           $<span>190</span>
                         </div>
                         <p>Per year</p>
                       </div>
                       <ul>
-                        <li>1000 messages</li>
-                        <li>15GB storage</li>
-                        <li>10 projects</li>
+                        <li> Portraits,</li>
+                        <li> Personal Branding,</li>
+                        <li> Social Content Headshots,</li>
                         <li>Premium support</li>
+                        <li>Family Shoots</li>
+                        <li> Lifestyle</li>
+                        <li> Fashion</li>
                       </ul>
                       <div className="bottom-area">
                         <a
@@ -368,17 +403,20 @@ const Homepage = () => {
                   <div className="col-lg-4">
                     <div className="cnt-box cnt-pricing-table pricing-table-big">
                       <div className="top-area">
-                        <h2>Business plan</h2>
+                        <h2>Videography</h2>
                         <div className="price">
                           $<span>599</span>
                         </div>
                         <p>Per year</p>
                       </div>
                       <ul>
-                        <li>2000 messages</li>
-                        <li>20GB storage</li>
-                        <li>50 projects</li>
-                        <li>Premium support</li>
+                        <li>Kickstarter Campaigns</li>
+                        <li>Instructional Videos</li>
+                        <li>Company Profiles</li>
+                        <li>Family Moments</li>
+                        <li>Weddings</li>
+                        <li>Webisodes,</li>
+                        <li>Makeup Shoots</li>
                       </ul>
                       <div className="bottom-area">
                         <a
@@ -393,17 +431,20 @@ const Homepage = () => {
                   <div className="col-lg-4">
                     <div className="cnt-box cnt-pricing-table">
                       <div className="top-area">
-                        <h2>Enterprise plan</h2>
+                        <h2>Events</h2>
                         <div className="price">
                           $<span>999</span>
                         </div>
                         <p>Per year</p>
                       </div>
                       <ul>
-                        <li>8000 messages</li>
-                        <li>30GB storage</li>
-                        <li>100 projects</li>
-                        <li>Premium support</li>
+                        <li>Special Events</li>
+                        <li>Parties</li>
+                        <li> Sports & Activities,</li>
+                        <li> Real Estate Home Tours</li>
+                        <li>Bachelorette Showers</li>
+                        <li>Concerts & Birthdays</li>
+                        <li>Venues</li>
                       </ul>
                       <div className="bottom-area">
                         <a
@@ -426,9 +467,8 @@ const Homepage = () => {
                   state of art modern application.
                 </h2>
                 <p>
-                  Lorem ipsum dolor sit amet no sea takimata sanctus est Lorem
-                  ipsum dolor sit amete sare nostrudente exercitation ullamco
-                  sea takiquis nostrud exercitatio.
+                  We are pleased to announce that the official app for Ogaphoto
+                  now available
                 </p>
                 <hr className="space" />
                 <ul className="text-list text-list-image">
@@ -436,20 +476,15 @@ const Homepage = () => {
                     <img src="media/photo/square-1.png" alt="" />
                     <div className="content">
                       <h3>Slow battery usage and high performance</h3>
-                      <p>
-                        Placeat orci commodo, amet quo rem architecto possimus.
-                      </p>
+                      <p>Super fast and easy on battery life.</p>
                       <div />
                     </div>
                   </li>
                   <li>
                     <img src="media/photo/square-2.png" alt="" />
                     <div className="content">
-                      <h3>Snapchat style filters with a plus</h3>
-                      <p>
-                        Placeat orci commodo, amet quo rem architecto possimuse
-                        arte.
-                      </p>
+                      <h3>optimized Search </h3>
+                      <p>Search For Photographers/videographers within reach</p>
                       <div />
                     </div>
                   </li>
@@ -532,18 +567,23 @@ const Homepage = () => {
               </div>
             </div>
             <div className="align-center">
-              <h2>Hire A photographer now.</h2>
+              <h2>Dreams don't work unless you take action</h2>
               <p className="width-650">
-                Lorem ipsum dolor sit amet no sea takimata sanctus est Lorem
-                ipsum dolor sit amete sare nostrud exercitation ullamco.
+                Just Turn Up! Your photographer will bring their
+                professional-grade equipment to your location at your chosen
+                time, and you can relax knowing that you are in the hands of an
+                experienced creative, a vetted specialist who takes your ideas
+                and vision and crafts them into amazing visuals. We have local
+                specialists for every kind of shoot or video, and work with you
+                to take your brand to the next level.
               </p>
               <hr className="space-sm" />
               <Link
                 className="nav-link scroll"
-                to="/signUp"
+                to="/LoginSignUpNew"
                 style={{ color: "#000" }}
               >
-                <button className="signup">Hire A Photographer</button>
+                <button className="signup">Hire A Photographer Now</button>
               </Link>
               {/* <a className="btn-store" href="#">
                 <img src="media/store-google.png" alt="" />
@@ -572,7 +612,7 @@ const Homepage = () => {
                     <i className="im-instagram" />
                     <div className="caption">
                       <h2>Creative filters</h2>
-                      <p>Lorem ipsum dolor sitamet consecte.</p>
+                      <p>Perfect picture editing.</p>
                     </div>
                   </div>
                 </div>
@@ -581,7 +621,7 @@ const Homepage = () => {
                     <i className="im-aquarius" />
                     <div className="caption">
                       <h2>Shape modelling</h2>
-                      <p>Lorem ipsum dolor sitamet consecte.</p>
+                      <p>Get the best after effects on every shape.</p>
                     </div>
                   </div>
                 </div>
@@ -590,7 +630,7 @@ const Homepage = () => {
                     <i className="im-cookie-man" />
                     <div className="caption">
                       <h2>Emojicons</h2>
-                      <p>Lorem ipsum dolor sitamet consecte.</p>
+                      <p>On demand emojicons.</p>
                     </div>
                   </div>
                 </div>
@@ -599,7 +639,7 @@ const Homepage = () => {
                     <i className="im-film-strip" />
                     <div className="caption">
                       <h2>Video conversion</h2>
-                      <p>Lorem ipsum dolor sitamet consecte.</p>
+                      <p>Converts Video in all formats.</p>
                     </div>
                   </div>
                 </div>
@@ -686,6 +726,7 @@ const Homepage = () => {
         </section>
         <section id="team" className="section-base">
           <div className="container">
+            <div style={{ height: "100px" }}></div>
             <div className="row">
               <div className="col-lg-6 col-md-4">
                 <ul
@@ -694,9 +735,9 @@ const Homepage = () => {
                 >
                   <li>
                     <div className="cnt-box cnt-box-team align-left">
-                      <img src="media/users/user-1.jpg" alt="" />
+                      <img src="media/t1.jpg" alt="" />
                       <div className="caption">
-                        <h2>Robert Junior</h2>
+                        <h2>Coriss Ambady</h2>
                         <span>Founder</span>
                         <span className="icon-links">
                           <a href="#" target="_blank">
@@ -709,15 +750,18 @@ const Homepage = () => {
                             <i className="icon-instagram" />
                           </a>
                         </span>
-                        <p>Lorem ipsum dolor sitamet consectetur eiusmo.</p>
+                        <p>
+                          Project Lead, Graphic Designer and Art Director, among
+                          many other things
+                        </p>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div className="cnt-box cnt-box-team align-left">
-                      <img src="media/users/user-3.jpg" alt="" />
+                      <img src="media/t2.jpg" alt="" />
                       <div className="caption">
-                        <h2>Jessica Poster</h2>
+                        <h2>Cory Zamora</h2>
                         <span>Marketing</span>
                         <span className="icon-links">
                           <a href="#" target="_blank">
@@ -730,7 +774,10 @@ const Homepage = () => {
                             <i className="icon-instagram" />
                           </a>
                         </span>
-                        <p>Lorem ipsum dolor sitamet consectetur eiusmo.</p>
+                        <p>
+                          Her background in mathematics gives her a
+                          sophisticated grasp{" "}
+                        </p>
                       </div>
                     </div>
                   </li>
@@ -739,7 +786,7 @@ const Homepage = () => {
                       <img src="media/users/user-5.jpg" alt="" />
                       <div className="caption">
                         <h2>Brad Manson</h2>
-                        <span>Software</span>
+                        <span>Videographer</span>
                         <span className="icon-links">
                           <a href="#" target="_blank">
                             <i className="icon-facebook" />
@@ -751,7 +798,9 @@ const Homepage = () => {
                             <i className="icon-instagram" />
                           </a>
                         </span>
-                        <p>Lorem ipsum dolor sitamet consectetur eiusmo.</p>
+                        <p>
+                          A graduate from Arts With passion for image perfection
+                        </p>
                       </div>
                     </div>
                   </li>
@@ -772,7 +821,7 @@ const Homepage = () => {
                             <i className="icon-instagram" />
                           </a>
                         </span>
-                        <p>Lorem ipsum dolor sitamet consectetur eiusmo.</p>
+                        <p>One of our top rated digital marketers</p>
                       </div>
                     </div>
                   </li>
@@ -784,13 +833,12 @@ const Homepage = () => {
                   do and this is important.
                 </h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipiscing elitsed do
-                  eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                  Utenim ad minim veniam quis nostrud exercitation ullamco
-                  laboris.
+                  Our Processes are as seemless at it can be, All you need to do
+                  is Sign Up choose your service type and the best hands in the
+                  industry will be assigned you
                 </p>
                 <a href="#" className="btn-text">
-                  View all members
+                  View details
                 </a>
               </div>
             </div>
@@ -798,6 +846,7 @@ const Homepage = () => {
         </section>
         <section id="reviews" className="section-base section-color">
           <div className="container">
+            <div style={{ height: "100px" }}></div>
             <ul
               className="slider"
               data-options="type:carousel,arrows:true,nav:false,perView:3,perViewMd:2,perViewSm:1,gap:30,controls:out"
@@ -805,14 +854,14 @@ const Homepage = () => {
               <li>
                 <div className="cnt-box cnt-box-testimonials-bubble rating-5">
                   <p>
-                    Lorem ipsum dolor sitamet consectetur adipisicing elito sed
-                    do eiusmod tempore artisio meto.
+                    Thank you so so so so much!! The photos are absolutely
+                    beautiful! We love every single one of them. Thank
                   </p>
                   <div className="thumb-bar">
                     <img src="media/users/user-5.jpg" alt="" />
                     <p>
                       <span>Robert Junior</span>
-                      <span>Slack</span>
+                      {/* <span>Slack</span> */}
                     </p>
                   </div>
                 </div>
@@ -820,14 +869,14 @@ const Homepage = () => {
               <li>
                 <div className="cnt-box cnt-box-testimonials-bubble rating-5">
                   <p>
-                    Lorem ipsum dolor sitamet consectetur adipisicinge stratone
-                    elito sed do eiusmod tempore.
+                    Oh my goodness, we received our photos!!!!!❤ From the bottom
+                    of our hearts we would like to say the biggest THANK YOU!!!
                   </p>
                   <div className="thumb-bar">
                     <img src="media/users/user-4.jpg" alt="" />
                     <p>
                       <span>Brad Manson</span>
-                      <span>Google</span>
+                      {/* <span>Google</span> */}
                     </p>
                   </div>
                 </div>
@@ -835,14 +884,14 @@ const Homepage = () => {
               <li>
                 <div className="cnt-box cnt-box-testimonials-bubble rating-4">
                   <p>
-                    Lorem ipsum dolor sitamet consectetur adipisicing elito sed
-                    do eiusmod tempore eclessio.
+                    OgaPhoto, you are a real gem, you have a bright shining
+                    personality and that’s what made it such a fun day.
                   </p>
                   <div className="thumb-bar">
                     <img src="media/users/user-2.jpg" alt="" />
                     <p>
                       <span>Jessica Poster</span>
-                      <span>Facebook</span>
+                      {/* <span>Facebook</span> */}
                     </p>
                   </div>
                 </div>
@@ -850,14 +899,15 @@ const Homepage = () => {
               <li>
                 <div className="cnt-box cnt-box-testimonials-bubble rating-4">
                   <p>
-                    Lorem ipsum dolor sitamet consectetur adipisicing elito sed
-                    do eiusmod tempore eclessio.
+                    My wife and I both knew it was very important to have
+                    beautiful photos for future memories of our wedding leading
+                    up to our big day.
                   </p>
                   <div className="thumb-bar">
                     <img src="media/users/user-1.jpg" alt="" />
                     <p>
                       <span>Richard Oyster</span>
-                      <span>Microsoft</span>
+                      {/* <span>Microsoft</span> */}
                     </p>
                   </div>
                 </div>

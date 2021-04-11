@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { Scripts } from "../scriptNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import ClearIcon from "@material-ui/icons/Clear";
+import { useHistory } from "react-router-dom";
 
 // import { useDispatch } from 'react-redux';
 // import { signOut } from '../actions/authactions';
@@ -106,7 +107,7 @@ const Header = () => {
     };
     loadScript();
   }, []);
-
+  const history = useHistory();
   const handleOpenSideBar = () => {
     setSidebarVisible(!sidebarVisible);
   };
@@ -127,10 +128,16 @@ const Header = () => {
     >
       {sidebarVisible ? <Filter onClick={handleOpenSideBar} /> : null}
       <LogoDiv>
-        <Link to="/">
+        <a
+          href="./#"
+          // onClick={() => {
+          //   history.push("/#");
+          //   window.location.reload(true);
+          // }}
+        >
           {" "}
           <img src="media/OgaLogo.png" alt="logo" />
-        </Link>
+        </a>
       </LogoDiv>
       <div className="container">
         {/* <div className="menu-brand">
@@ -155,19 +162,19 @@ const Header = () => {
         <div className="menu-cnt">
           <ul>
             <li>
-              <a href="#HomeBase">Home</a>
+              <a href="/#">Home</a>
             </li>
             <li>
-              <a href="#pricing">About</a>
+              <a href="/#pricing">Pricing</a>
             </li>
             <li>
-              <a href="#features">Features</a>
+              <a href="/#features">Features</a>
             </li>
             <li>
-              <a href="#team">Team</a>
+              <a href="/#team">Team</a>
             </li>
             <li>
-              <a href="#reviews">Reviews</a>
+              <a href="/#reviews">Reviews</a>
             </li>
           </ul>
           <div className="menu-right">
@@ -233,15 +240,13 @@ const Header = () => {
 
           <Listing>
             <li onClick={setSidebarVisible.bind(this, false)}>
-              <Link to="/" href="#HomeBase">
-                Home
-              </Link>
+            <a href="/#">Home</a>
             </li>
             <li onClick={setSidebarVisible.bind(this, false)}>
-              <a href="#pricing">About</a>
+            <a href="/#pricing">Pricing</a>
             </li>
             <li onClick={setSidebarVisible.bind(this, false)}>
-              <a href="#features">Features</a>
+            <a href="/#features">Features</a>
             </li>
             <li onClick={setSidebarVisible.bind(this, false)}>
               <a href="#team">Team</a>

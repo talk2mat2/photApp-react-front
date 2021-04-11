@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Header from "./components/headerNew";
 import { Scripts } from "./scriptNew";
 import Footer from "./components/FooterNew";
+import ScrollToTop from "./ScrollToTop";
 // import About from "./views/pages/About";
 // import Portfolio from "./views/pages/portfolio";
 // import How_it_works from "./views/pages/how_it_works";
@@ -51,22 +52,26 @@ function App() {
     //   OneSignal.removeExternalUserId((results) => console.log(results));
   });
 
-  React.useEffect(() => {
-    const loadScript = async () => {
-      await Scripts.forEach(async (item) => {
-        const script = document.createElement("script");
-        script.src = item.src;
-        // script.async = true;
+  // React.useEffect(() => {
+  //   const loadScript = async () => {
+  //     await Scripts.forEach(async (item) => {
+  //       const script = document.createElement("script");
+  //       script.src = item.src;
+  //       // script.async = true;
 
-        document.body.appendChild(script);
-      });
-    };
-    loadScript();
-  }, []);
+  //       document.body.appendChild(script);
+  //     });
+  //   };
+  //   loadScript();
+  // }, []);
+
   return (
+    // <Router forceRefresh={true}>
     <Router>
-      <BaseRoute />
-      <Footer />
+      <ScrollToTop>
+        <BaseRoute />
+        <Footer />
+      </ScrollToTop>
     </Router>
   );
 }

@@ -83,9 +83,7 @@ const Footer = () => {
         <div className="footer-bar">
           <div className="container">
             <span>© 2021 OGAPHOTOS. ALL RIGHTS RESERVED.</span>
-            <span>
-              <img src="media/logo-light.svg" alt="" />
-            </span>
+            <span>{/* <img src="media/logo-light.svg" alt="" /> */}</span>
           </div>
         </div>
         <link

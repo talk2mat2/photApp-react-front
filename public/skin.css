@@ -3199,3 +3199,7 @@ Extra small devices (portrait phones, less than 576px)
   background-color: rgb(141, 5, 5);
   color: #fff;
 }
+
+html {
+  scroll-behavior: smooth;
+}
